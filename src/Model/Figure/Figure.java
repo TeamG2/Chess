@@ -1,9 +1,9 @@
 package Model.Figure;
 
-import Model.Position;;
+import Model.Colour;
 
 public abstract class Figure {
 	
-	private Position position;	
+	private  Colour colour;
 	
 }
