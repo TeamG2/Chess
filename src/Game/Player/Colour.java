@@ -1,4 +1,5 @@
-package Model;
+package Game.Player;
+
 
 public enum Colour 
 {

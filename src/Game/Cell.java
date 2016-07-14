@@ -1,6 +1,7 @@
-package Model;
+package Game;
 
-import Model.Figure.Figure;
+
+import Game.Figure.Figure;
 
 public class Cell {
 	

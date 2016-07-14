@@ -1,6 +1,6 @@
-package Model.Figure;
+package Game.Figure;
 
-import Model.Colour;
+import Game.Player.Colour;
 
 public abstract class Figure {
 	

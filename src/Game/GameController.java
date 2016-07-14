@@ -1,6 +1,7 @@
-package Model;
+package Game;
 
-public class Game {
+
+public class GameController {
 	private Desk desk;
 	
 	public void createNewGame()

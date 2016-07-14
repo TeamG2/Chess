@@ -1,6 +1,13 @@
-package Model;
+package Game;
 
-import Model.Figure.*;
+
+import Game.Figure.Bishop;
+import Game.Figure.King;
+import Game.Figure.Knight;
+import Game.Figure.Pawn;
+import Game.Figure.Queen;
+import Game.Figure.Rook;
+import Game.Player.Colour;
 
 public class Desk {
 
