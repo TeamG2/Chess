@@ -4,6 +4,10 @@ import Model.Colour;
 
 public abstract class Figure {
 	
-	private  Colour colour;
+	private Colour colour;
 	
+	public Figure(Colour colour)
+	{
+		this.colour = colour;
+	}	
 }
