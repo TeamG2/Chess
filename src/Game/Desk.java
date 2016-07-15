@@ -16,12 +16,24 @@ public class Desk {
 	
 	public void setInitialState()
 	{		
+		this.fillCells();
 		this.setInitialPawns();		
 		this.setInitialRooks();
 		this.setInitialKnights();
 		this.setInitialBishops();
 		this.setInitialQueens();
 		this.setInitialKings();
+	}
+	
+	private void fillCells()
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				field[i][j] = new Cell();
+			}
+		}
 	}
 	
 	private void setInitialKings()
@@ -49,8 +61,8 @@ public class Desk {
 		
 		black = new Bishop(Colour.BLACK);
 		white = new Bishop(Colour.WHITE);
-		field[0][2] = new Cell(black);
-		field[7][5] = new Cell(white);
+		field[0][5] = new Cell(black);
+		field[7][2] = new Cell(white);
 	}
 	
 	private void setInitialPawns()

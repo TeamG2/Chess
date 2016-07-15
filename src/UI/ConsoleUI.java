@@ -21,7 +21,7 @@ public class ConsoleUI {
 		return instance;
 	}
 	
-	public static Colour userColour()
+	public Colour userColour()
 	{
 
 		System.out.println("Please, pick Colour of figures: White (W) or Black (B)");
@@ -36,7 +36,7 @@ public class ConsoleUI {
 
 
 
-		public static void representBoard()
+		public void representBoard()
 		{ 
 			Desk desk = GameController.getInstance().getDesk();
 			char [] line={'A','B','C','D','E','E','F','G'};
@@ -46,9 +46,11 @@ public class ConsoleUI {
 				for(int j=0;j<=7;j++){
 					Position pos = new Position(i, j);
 					Figure fig =desk.getCell(pos).getFigure();
-						char c=fig.getName();
-						if (c==' ')
-							System.out.print(".\t");
+					char c= ' ';
+					if (fig != null)
+						c = fig.getName();
+					if (c==' ')
+							System.out.print(".");
 								else
 							System.out.print(c);
 				
@@ -58,13 +60,13 @@ public class ConsoleUI {
 		
 		System.out.print("\t");
 		for(int i=1;i<=8;i++){
-                      System.out.print(i+"\t");
+                      System.out.print(i);
 		}
- 
+		System.out.println();
 	}
 
 	
-	public static Move getMove(){
+	public Move getMove(){
 		System.out.println("Your turn. Please enter the course of type E2:E4.");
 
 		Scanner in = new Scanner(System.in);
@@ -76,8 +78,8 @@ public class ConsoleUI {
 		int x1,y1,x2,y2;
 		
 		
-		x1=stringMove.charAt(1)-'A';
-		y1=stringMove.charAt(2)-'0';
+		x1=stringMove.charAt(0)-'A';
+		y1=stringMove.charAt(1)-'0';
 		x2=stringMove.charAt(3)-'A';
 		y2=stringMove.charAt(4)-'0';		
 	
