@@ -1,5 +1,6 @@
 package Game.Figure;
 
+import Game.Position;
 import Game.Player.Colour;
 
 public abstract class Figure {
@@ -14,5 +15,9 @@ public abstract class Figure {
 	
 	public char getName(){
 		return nameFigure;
+	}
+	
+	public boolean checkMove(Position pos1, Position pos2) {
+		return false;
 	}
 }
