@@ -8,13 +8,12 @@ public class Cell {
 	private int xCoord, yCoord;
 	//boolean isOccupied;
 	
-	/*public Cell(Figure figure)
+	public Cell(Figure figure)
 	{
-		this.figure = null;
+		this.figure = figure;
 		
-		int test2;
-		int ii;
-	}*/
+		
+	}
 	
 	public void setXCoord(int xCoord) {
 		this.xCoord = xCoord;
@@ -48,6 +47,10 @@ public class Cell {
 	
 	public void placeFigure(Figure figure){
 		this.figure = figure;
+	}
+	
+	public Figure getFigure() {
+		return this.figure;
 	}
 	
 }
