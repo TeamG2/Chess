@@ -19,7 +19,10 @@ public class ConsoleUI {
 	
 	public Colour userColour()
 	{
-		//todo: implement
+		System.out.println("Please, pick Colour of figures: White (W) or Black (B)");
+		Scanner sc = new Scanner(System.in);
+		
+		
 		return null;
 	}
 	
