@@ -1,5 +1,5 @@
 package Game.Player;
 
-public class User {
+public class User extends Player {
 
 }
