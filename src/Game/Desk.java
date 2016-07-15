@@ -1,6 +1,5 @@
 package Game;
 
-
 import Game.Figure.Bishop;
 import Game.Figure.King;
 import Game.Figure.Knight;

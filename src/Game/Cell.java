@@ -1,6 +1,5 @@
 package Game;
 
-
 import Game.Figure.Figure;
 
 public class Cell {
@@ -10,6 +9,5 @@ public class Cell {
 	public Cell(Figure figure)
 	{
 		this.figure = figure;
-		int i;
 	}
 }
