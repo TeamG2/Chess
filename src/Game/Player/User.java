@@ -18,16 +18,16 @@ public class User extends Player {
 		Position pos1 = move.getFrom();
 		Position pos2 = move.getTo();
 		
-		Cell Cell1 = desk.getCell(pos1);
-		Cell Cell2 = desk.getCell(pos2);
-		Figure fig = Cell1.getFigure();
+		Cell cell1 = desk.getCell(pos1);
+		Cell cell2 = desk.getCell(pos2);
+		Figure fig = cell1.getFigure();
 		
-		if (Cell1.isFree()) return false;
+		if (cell1.isFree()) return false;
 		if (!fig.checkMove(pos1, pos2)) return false;
-		if (!Cell2.isFree()) Cell2.setFree();
+		if (!cell2.isFree()) cell2.setFree();
 			
-		Cell1.setFree();
-		Cell2.placeFigure(fig);
+		cell1.setFree();
+		cell2.placeFigure(fig);
 		return true;
 		
 	}

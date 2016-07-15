@@ -93,5 +93,5 @@ public class Desk {
 	public Cell getCell(Position pos) {
 		return field[pos.getX()][pos.getY()];
 	}
-	
+
 }

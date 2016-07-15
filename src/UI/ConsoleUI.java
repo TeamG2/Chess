@@ -36,16 +36,16 @@ public class ConsoleUI {
 
 
 
-		public static void representBoard(Desk desk)
+		public static void representBoard()
 		{ 
+			Desk desk = GameController.getInstance().getDesk();
 			char [] line={'A','B','C','D','E','E','F','G'};
-			Cell [][] f=desk.getDesk();
 			for (int i=0;i<=7;i++){
 				System.out.print(line[i]+" \t");
 				
 				for(int j=0;j<=7;j++){
-					
-					Figure fig =f[i][j].getFigure();
+					Position pos = new Position(i, j);
+					Figure fig =desk.getCell(pos).getFigure();
 						char c=fig.getName();
 						if (c==' ')
 							System.out.print(".\t");
