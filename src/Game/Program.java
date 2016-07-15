@@ -6,7 +6,6 @@ public class Program {
 		// TODO Auto-generated method stub
 		
 		GameController.getInstance().startNewGame();
-
 	}
 
 }

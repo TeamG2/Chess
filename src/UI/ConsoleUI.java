@@ -27,8 +27,10 @@ public class ConsoleUI {
 		System.out.println("Please, pick Colour of figures: White (W) or Black (B)");
 		Scanner sc = new Scanner(System.in);
 		
+		String s = sc.next();
 		
-		return null;
+		if (s == "W") return Colour.WHITE;
+		else return Colour.BLACK;
 	}
 	
 
