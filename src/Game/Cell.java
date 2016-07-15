@@ -11,5 +11,6 @@ public class Cell {
 		this.figure = figure;
 		
 		int test2;
+		int ii;
 	}
 }
