@@ -30,7 +30,8 @@ public class ConsoleUI {
 	{
 		//todo: implement
 	}
-	public static Game.Move getMove(){
+	
+	public static Move getMove(){
 		System.out.println("Your turn. Please enter the course of type E2:E4.");
 		Scanner in = new Scanner(System.in);
 		String stringMove=in.nextLine();
