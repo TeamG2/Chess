@@ -8,6 +8,8 @@ public class GameController {
 	
 	private Player[] players;
 	
+	private int currentPlayer;
+	
 	private static GameController instance = null;
 	
 	private GameController()
@@ -28,7 +30,7 @@ public class GameController {
 		desk.setInitialState();
 		players = new Player[2];
 		
-		Colour userColour = ConsoleUI.getInstance().userColour();
+		Colour userColour = ConsoleUI.userColour();
 		if (userColour == Colour.WHITE)
 		{
 			players[0] = new User();
@@ -40,11 +42,16 @@ public class GameController {
 			players[0] = new Bot();
 		}			
 		
+		currentPlayer = 0;
 		gameRunner();
 	}
 	
 	public void gameRunner()
 	{
-		
+		while (true)
+		{
+			players[currentPlayer].makeMove();
+			currentPlayer = currentPlayer ^ 1; // change player
+		}
 	}
 }
