@@ -30,7 +30,7 @@ public class GameController {
 		desk.setInitialState();
 		players = new Player[2];
 		
-		Colour userColour = ConsoleUI.userColour();
+		Colour userColour = ConsoleUI.getInstance().userColour();
 		if (userColour == Colour.WHITE)
 		{
 			players[0] = new User();

@@ -18,17 +18,17 @@ public class ConsoleUI {
 		return instance;
 	}
 	
-	public static Colour userColour()
+	public Colour userColour()
 	{
 		//todo: implement
 		return null;
 	}
 	
-	public static void representBoard()
+	public void representBoard()
 	{
 		//todo: implement
 	}
-	public static Move getMove(){
+	public Game.Move getMove(){
 		Scanner in = new Scanner(System.in);
 		String stringMove=in.nextLine();
 		while (!Pattern.matches("[A-H][0-7]:[A-H][0-7]$", stringMove)){
