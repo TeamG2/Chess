@@ -8,7 +8,7 @@ public class Move {
 	
 	Move(int x1,int y1, int x2,int y2){
 		from = new Position(x1,y1);
-		from = new Position(x2,y2);
+		to = new Position(x2,y2);
 	}
 	
 	public Position getFrom()
