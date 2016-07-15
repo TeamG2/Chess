@@ -9,5 +9,7 @@ public class Cell {
 	public Cell(Figure figure)
 	{
 		this.figure = figure;
+		
+		int test2;
 	}
 }
