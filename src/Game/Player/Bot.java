@@ -1,5 +1,13 @@
 package Game.Player;
 
-public class Bot {
+import Game.Move;
+
+public class Bot extends Player {
+
+	@Override
+	public boolean makeMove() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
