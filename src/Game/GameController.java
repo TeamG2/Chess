@@ -24,6 +24,11 @@ public class GameController {
 		return instance;
 	}
 	
+	public Desk getDesk()
+	{
+		return desk;
+	}
+	
 	public void startNewGame()
 	{
 		desk = new Desk();
