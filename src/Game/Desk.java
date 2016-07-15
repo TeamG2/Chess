@@ -89,4 +89,9 @@ public class Desk {
 		field[0][6] = new Cell(black);
 		field[7][6] = new Cell(white);
 	}
+	public Cell[][] getDesk()
+	{
+		return field;
+	}
+
 }
