@@ -1,6 +1,7 @@
 package Game;
 
 import Game.Figure.Bishop;
+import Game.Figure.Figure;
 import Game.Figure.King;
 import Game.Figure.Knight;
 import Game.Figure.Pawn;
@@ -105,5 +106,23 @@ public class Desk {
 	public Cell getCell(Position pos) {
 		return field[pos.getX()][pos.getY()];
 	}
+	
+//	public Figure [] getFigures(Colour colour){
+//		Figure [] allFigs;
+//		int i, j;
+//		for(i=1; i<=fiel)
+//		return	allFigs;
+//	}
+	
+//	public boolean isShah(Colour colour) {
+//		for (int i=0; i <= FIELD_SIZE-1; i++) {
+//			for (int j=0; j <=  FIELD_SIZE-1; j++) {
+//				Figure fig = field[i][j].getFigure();
+//					if (fig.getColour() == Colour.WHITE)
+//			}
+//			
+//		}
+//		return false;
+//	}
 
 }
