@@ -1,5 +1,8 @@
 package Game.Figure;
 
+import java.util.HashSet;
+
+import Game.Move;
 import Game.Position;
 import Game.Player.Colour;
 
@@ -17,7 +20,7 @@ public abstract class Figure {
 		return nameFigure;
 	}
 	
-	public boolean checkMove(Position pos1, Position pos2) {
-		return true;
-	}
+	public abstract boolean isValidMove(Move move);
+	
+	public abstract HashSet<Position> getPossiblePositions(Position current);
 }
