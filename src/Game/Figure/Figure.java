@@ -25,7 +25,10 @@ public abstract class Figure {
 		return nameFigure;
 	}
 	
-	public abstract boolean isValidMove(Move move);
+	public boolean isValidMove(Move move)
+	{
+		return getPossiblePositions(move.getFrom()).contains(move.getTo());
+	}
 	
 	public abstract HashSet<Position> getPossiblePositions(Position current);
 }
