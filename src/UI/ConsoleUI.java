@@ -29,7 +29,7 @@ public class ConsoleUI {
 		
 		String s = sc.next();
 		
-		sc.close();
+		
 		
 		if (s == "W") return Colour.WHITE;
 		else return Colour.BLACK;
@@ -85,7 +85,6 @@ public class ConsoleUI {
 		
 		Move newMove=new Move(x1,y1,x2,y2);
 		
-		in.close();
 		return newMove;
 	}
 }
