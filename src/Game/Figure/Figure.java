@@ -18,6 +18,6 @@ public abstract class Figure {
 	}
 	
 	public boolean checkMove(Position pos1, Position pos2) {
-		return false;
+		return true;
 	}
 }

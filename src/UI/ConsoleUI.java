@@ -29,6 +29,8 @@ public class ConsoleUI {
 		
 		String s = sc.next();
 		
+		sc.close();
+		
 		if (s == "W") return Colour.WHITE;
 		else return Colour.BLACK;
 	}
@@ -36,7 +38,7 @@ public class ConsoleUI {
 	public void representBoard()
 	{ 
 		Desk desk = GameController.getInstance().getDesk();
-		char [] line={'A','B','C','D','E','E','F','G'};
+		char [] line={'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 		for (int i=0;i<=7;i++){
 			System.out.print(line[i]+" \t");
 				
@@ -76,9 +78,9 @@ public class ConsoleUI {
 		
 		
 		x1=stringMove.charAt(0)-'A';
-		y1=stringMove.charAt(1)-'0';
+		y1=stringMove.charAt(1)-'1';
 		x2=stringMove.charAt(3)-'A';
-		y2=stringMove.charAt(4)-'0';		
+		y2=stringMove.charAt(4)-'1';		
 	
 		
 		Move newMove=new Move(x1,y1,x2,y2);
