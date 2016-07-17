@@ -91,10 +91,10 @@ public class ConsoleUI {
 		int x1,y1,x2,y2;
 		
 		
-		x1=stringMove.charAt(0)-'A';
-		y1=stringMove.charAt(1)-'1';
-		x2=stringMove.charAt(3)-'A';
-		y2=stringMove.charAt(4)-'1';		
+		y1=stringMove.charAt(0)-'A';
+		x1=stringMove.charAt(1)-'1';
+		y2=stringMove.charAt(3)-'A';
+		x2=stringMove.charAt(4)-'1';		
 	
 		
 		Move newMove=new Move(x1,y1,x2,y2);
