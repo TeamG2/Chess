@@ -10,7 +10,7 @@ import Game.Player.Colour;
 
 public class Desk {
 
-	private final int FIELD_SIZE = 8; 
+	public static final int FIELD_SIZE = 8; 
 	
 	private Cell[][] field = new Cell[FIELD_SIZE][FIELD_SIZE];
 	

@@ -16,6 +16,11 @@ public abstract class Figure {
 		this.colour = colour;
 	}	
 	
+	public Colour getColour()
+	{
+		return colour;
+	}
+	
 	public char getName(){
 		return nameFigure;
 	}
