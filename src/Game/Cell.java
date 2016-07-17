@@ -45,7 +45,7 @@ public class Cell {
 		
 	}
 	
-	public void placeFigure(Figure figure){
+	public void setFigure(Figure figure){
 		this.figure = figure;
 	}
 	public void setFree(){

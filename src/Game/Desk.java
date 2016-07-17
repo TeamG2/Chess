@@ -16,7 +16,7 @@ public class Desk {
 	
 	public void setInitialState()
 	{		
-		this.fillCells();
+		this.setCells();
 		this.setInitialPawns();		
 		this.setInitialRooks();
 		this.setInitialKnights();
@@ -25,7 +25,7 @@ public class Desk {
 		this.setInitialKings();
 	}
 	
-	private void fillCells()
+	private void setCells()
 	{
 		for (int i = 0; i < 8; i++)
 		{
@@ -40,29 +40,29 @@ public class Desk {
 	{
 		King black = new King(Colour.BLACK);
 		King white = new King(Colour.WHITE);
-		field[0][4] = new Cell(black);
-		field[7][3] = new Cell(white);		
+		field[0][4].setFigure(black);
+		field[7][3].setFigure(white);	
 	}
 	
 	private void setInitialQueens()
 	{
 		Queen black = new Queen(Colour.BLACK);
 		Queen white = new Queen(Colour.WHITE);
-		field[0][3] = new Cell(black);
-		field[7][4] = new Cell(white);		
+		field[0][3].setFigure(black);
+		field[7][4].setFigure(white);	
 	}
 	
 	private void setInitialBishops()
 	{
 		Bishop black = new Bishop(Colour.BLACK);
 		Bishop white = new Bishop(Colour.WHITE);
-		field[0][2] = new Cell(black);
-		field[7][5] = new Cell(white);
+		field[0][2].setFigure(black);
+		field[7][5].setFigure(white);
 		
 		black = new Bishop(Colour.BLACK);
 		white = new Bishop(Colour.WHITE);
-		field[0][5] = new Cell(black);
-		field[7][2] = new Cell(white);
+		field[0][5].setFigure(black);
+		field[7][2].setFigure(white);
 	}
 	
 	private void setInitialPawns()
@@ -71,8 +71,8 @@ public class Desk {
 		{
 			Pawn black = new Pawn(Colour.BLACK);
 			Pawn white = new Pawn(Colour.WHITE);
-			field[1][i] = new Cell(black);
-			field[6][i] = new Cell(white);
+			field[1][i].setFigure(white);
+			field[6][i].setFigure(black);
 		}
 	}
 	
@@ -80,26 +80,26 @@ public class Desk {
 	{
 		Rook black = new Rook(Colour.BLACK);
 		Rook white = new Rook(Colour.WHITE);
-		field[0][0] = new Cell(black);
-		field[7][0] = new Cell(white);
+		field[0][0].setFigure(black);
+		field[7][0].setFigure(white);
 		
 		black = new Rook(Colour.BLACK);
 		white = new Rook(Colour.WHITE);
-		field[0][7] = new Cell(black);
-		field[7][7] = new Cell(white);
+		field[0][7].setFigure(black);
+		field[7][7].setFigure(white);
 	}
 	
 	private void setInitialKnights()
 	{
 		Knight black = new Knight(Colour.BLACK);
 		Knight white = new Knight(Colour.WHITE);
-		field[0][1] = new Cell(black);
-		field[7][1] = new Cell(white);
+		field[0][1].setFigure(black);
+		field[7][1].setFigure(white);
 		
 		black = new Knight(Colour.BLACK);
 		white = new Knight(Colour.WHITE);
-		field[0][6] = new Cell(black);
-		field[7][6] = new Cell(white);
+		field[0][6].setFigure(black);
+		field[7][6].setFigure(white);
 	}
 	
 	public Cell getCell(Position pos) {

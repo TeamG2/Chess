@@ -32,35 +32,32 @@ public class ConsoleUI {
 		if (s == "W") return Colour.WHITE;
 		else return Colour.BLACK;
 	}
-	
 
-
-
-		public void representBoard()
-		{ 
-			Desk desk = GameController.getInstance().getDesk();
-			char [] line={'A','B','C','D','E','E','F','G'};
-			for (int i=0;i<=7;i++){
-				System.out.print(line[i]+" \t");
+	public void representBoard()
+	{ 
+		Desk desk = GameController.getInstance().getDesk();
+		char [] line={'A','B','C','D','E','E','F','G'};
+		for (int i=0;i<=7;i++){
+			System.out.print(line[i]+" \t");
 				
-				for(int j=0;j<=7;j++){
-					Position pos = new Position(i, j);
-					Figure fig =desk.getCell(pos).getFigure();
-					char c= ' ';
-					if (fig != null)
-						c = fig.getName();
-					if (c==' ')
-							System.out.print(".");
-								else
-							System.out.print(c);
+			for(int j=0;j<=7;j++){
+				Position pos = new Position(i, j);
+				Figure fig =desk.getCell(pos).getFigure();
+				char c= ' ';
+				if (fig != null)
+					c = fig.getName();
+				if (c==' ')
+					System.out.print(".");
+				else
+					System.out.print(c);
 				
-						}
-					System.out.println();
-				}	
+			}
+			System.out.println();
+		}	
 		
 		System.out.print("\t");
 		for(int i=1;i<=8;i++){
-                      System.out.print(i);
+			System.out.print(i);
 		}
 		System.out.println();
 	}
