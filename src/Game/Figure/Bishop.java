@@ -59,7 +59,7 @@ public class Bishop extends Figure {
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
-		for (int i = 0; i < Desk.FIELD_SIZE; i++)
+		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
 			Position newPosition = new Position(position.getRow() - i, position.getColumn() - i);
 			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
@@ -81,7 +81,7 @@ public class Bishop extends Figure {
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
-		for (int i = 0; i < Desk.FIELD_SIZE; i++)
+		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
 			Position newPosition = new Position(position.getRow() + i, position.getColumn() - i);
 			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
@@ -103,7 +103,7 @@ public class Bishop extends Figure {
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
-		for (int i = 0; i < Desk.FIELD_SIZE; i++)
+		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
 			Position newPosition = new Position(position.getRow() - i, position.getColumn() + i);
 			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
@@ -125,7 +125,7 @@ public class Bishop extends Figure {
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
-		for (int i = 0; i < Desk.FIELD_SIZE; i++)
+		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
 			Position newPosition = new Position(position.getRow() + i, position.getColumn() + i);
 			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||

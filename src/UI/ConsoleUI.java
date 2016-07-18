@@ -84,7 +84,7 @@ public class ConsoleUI {
 
 		Scanner in = new Scanner(System.in);
 		String stringMove=in.nextLine();
-		while (!Pattern.matches("^[A-H][0-7]:[A-H][0-7]$", stringMove)){
+		while (!Pattern.matches("^[A-H][1-8]:[A-H][1-8]$", stringMove)){
 			System.out.println("Invalid input. Enter a string of the form E2:E1");
 			stringMove=in.nextLine();
 		}	
