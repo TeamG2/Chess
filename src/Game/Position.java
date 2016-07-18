@@ -43,7 +43,7 @@ public class Position {
 			return false;
 		return true;
 	}
-	public boolean isExsist(){
+	public boolean isExist(){
 		return 0<=row && row<=7 && 0<=column && column<=7;
 	}
 }
