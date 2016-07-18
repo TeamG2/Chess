@@ -48,7 +48,7 @@ public abstract class Figure {
 		
 		if (cell1.isFree()) return false;
 		
-		if (!this.isValidMove(move)) return false;
+		if (!this.isValidMove(move)) return false; //Если этот метод не будет нигде применяться кроме isCheckMate() - удалить эту строку 
 		
 		if (!cell2.isFree()) {
 			Buffer = cell2.getFigure();
