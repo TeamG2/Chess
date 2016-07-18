@@ -19,7 +19,6 @@ public class Pawn extends Figure {
 	public HashSet<Position> getPossiblePositions(Position current) {
 		// TODO Auto-generated method stub
 		HashSet<Position> setOfPosibleMoves= new HashSet <>();
-		
 		if ( getColour() == Colour.WHITE){
 			int row = current.getRow(), column = current.getColumn();
 			
@@ -52,6 +51,30 @@ public class Pawn extends Figure {
 			}
 
 		}	
+		
+		if ( getColour() == Colour.BLACK){
+			int x=current.getX(),y=current.getY();
+			
+			if (y==7)System.out.print("Error! Pawn.getPossiblePositions()");
+			
+			if (y>0) if (desk.getCell(new Position(x,y-1)).isFree()) setOfPosibleMoves.add(new Position(x,y-1));
+
+			if (y==6)if (desk.getCell(new Position(x,5)).isFree()) setOfPosibleMoves.add(new Position(x,5));
+			
+			if (x>0){
+			Cell newCell = desk.getCell(new Position(x-1,y-1));
+				if  (newCell.getFigure().getColour() != getColour()){
+					setOfPosibleMoves.add(new Position(x-1,y-1));
+				}
+			}
+			
+			if (x<7){
+			Cell newCell = desk.getCell(new Position(x+1,y-1));
+				if  (newCell.getFigure().getColour() != this.getColour()){
+					setOfPosibleMoves.add(new Position(x+1,y+1));
+				}
+			}
+		}
 		return setOfPosibleMoves;
 	}
 }
