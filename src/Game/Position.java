@@ -44,6 +44,6 @@ public class Position {
 		return true;
 	}
 	public boolean isExist(){
-		return 0<=row && row<=7 && 0<=column && column<=7;
+		return (0<=row && row<=7 && 0<=column && column<=7);
 	}
 }
