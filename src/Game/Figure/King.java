@@ -58,8 +58,17 @@ public class King extends Figure{
 					&&(!(newCell.getFigure().getColour() == getColour()))
 					&&(newCell.isFree() || newCell.getFigure().getColour() != getColour())
 				)
-				setOfPosibleMoves.add(newPos);	
-		}
+			{
+						
+				Desk thisGame=new Desk(GameController.getInstance().getDesk());
+				thisGame.moveFigure(desk.getCell(current), desk.getCell(newPos));
+					if (!thisGame.isShahFor(getColour())){
+						setOfPosibleMoves.add(newPos);
+					}
+			}
+	
+		}	
+		
 		return setOfPosibleMoves;
 	}
 

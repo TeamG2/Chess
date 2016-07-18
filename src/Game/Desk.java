@@ -17,6 +17,10 @@ public class Desk {
 	
 	private Cell[][] field = new Cell[FIELD_SIZE][FIELD_SIZE];
 	
+	public Desk(Desk currentGame){
+		
+	};
+	
 	public void setInitialState()
 	{		
 		this.setCells();
