@@ -21,27 +21,33 @@ public class Pawn extends Figure {
 		HashSet<Position> setOfPosibleMoves= new HashSet <>();
 		
 		if ( getColour() == Colour.WHITE){
-			int x=current.getX(),y=current.getY();
+			int row = current.getRow(), column = current.getColumn();
 			
-			if (y==1)System.out.print("Error! Pawn.getPossiblePositions()");
+			if (row == 0) System.out.print("Error! Pawn.getPossiblePositions()");
 			
-			if (y<7)setOfPosibleMoves.add(new Position(x,y+1));
+			if (row < 7)
+			{
+				setOfPosibleMoves.add(new Position(row + 1, column));
+			}
 
-			if (y==2)setOfPosibleMoves.add(new Position(x,4));
+			if (row == 1)
+			{
+				setOfPosibleMoves.add(new Position(3, column));
+			}
 			
 			Desk desk = GameController.getInstance().getDesk();
 			
-			if (x>0){
-			Cell newCell = desk.getCell(new Position(x-1,y+1));
-				if  (newCell.getFigure().getColour() != this.getColour()){
-					setOfPosibleMoves.add(new Position(x-1,y+1));
+			if (column > 0){
+				Cell newCell = desk.getCell(new Position(row + 1, column - 1));
+				if  (!newCell.isFree() && newCell.getFigure().getColour() != this.getColour()){
+					setOfPosibleMoves.add(new Position(row + 1, column - 1));
 				}
 			}
 			
-			if (x<7){
-			Cell newCell = desk.getCell(new Position(x+1,y+1));
-				if  (newCell.getFigure().getColour() != this.getColour()){
-					setOfPosibleMoves.add(new Position(x+1,y+1));
+			if (column < 7){
+				Cell newCell = desk.getCell(new Position(row + 1, column + 1));
+				if  (!newCell.isFree() && newCell.getFigure().getColour() != this.getColour()){
+					setOfPosibleMoves.add(new Position(row + 1, column + 1));
 				}
 			}
 

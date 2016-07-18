@@ -26,7 +26,7 @@ public abstract class Figure {
 	}
 	
 	public boolean isValidMove(Move move)
-	{
+	{		
 		return getPossiblePositions(move.getFrom()).contains(move.getTo());
 	}
 	

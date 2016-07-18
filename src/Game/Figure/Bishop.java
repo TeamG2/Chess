@@ -61,9 +61,9 @@ public class Bishop extends Figure {
 		
 		for (int i = 0; i < Desk.FIELD_SIZE; i++)
 		{
-			Position newPosition = new Position(position.getX() - i, position.getY() - i);
-			if (newPosition.getX() < 0 || newPosition.getY() < 0 ||
-					newPosition.getX() >= Desk.FIELD_SIZE  || newPosition.getY() >= Desk.FIELD_SIZE )
+			Position newPosition = new Position(position.getRow() - i, position.getColumn() - i);
+			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
+					newPosition.getRow() >= Desk.FIELD_SIZE  || newPosition.getColumn() >= Desk.FIELD_SIZE )
 			{
 				return result;
 			}	
@@ -83,9 +83,9 @@ public class Bishop extends Figure {
 		
 		for (int i = 0; i < Desk.FIELD_SIZE; i++)
 		{
-			Position newPosition = new Position(position.getX() + i, position.getY() - i);
-			if (newPosition.getX() < 0 || newPosition.getY() < 0 ||
-					newPosition.getX() >= Desk.FIELD_SIZE  || newPosition.getY() >= Desk.FIELD_SIZE )
+			Position newPosition = new Position(position.getRow() + i, position.getColumn() - i);
+			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
+					newPosition.getRow() >= Desk.FIELD_SIZE  || newPosition.getColumn() >= Desk.FIELD_SIZE )
 			{
 				return result;
 			}
@@ -105,9 +105,9 @@ public class Bishop extends Figure {
 		
 		for (int i = 0; i < Desk.FIELD_SIZE; i++)
 		{
-			Position newPosition = new Position(position.getX() - i, position.getY() + i);
-			if (newPosition.getX() < 0 || newPosition.getY() < 0 ||
-					newPosition.getX() >= Desk.FIELD_SIZE  || newPosition.getY() >= Desk.FIELD_SIZE )
+			Position newPosition = new Position(position.getRow() - i, position.getColumn() + i);
+			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
+					newPosition.getRow() >= Desk.FIELD_SIZE  || newPosition.getColumn() >= Desk.FIELD_SIZE )
 			{
 				return result;
 			}	
@@ -127,9 +127,9 @@ public class Bishop extends Figure {
 		
 		for (int i = 0; i < Desk.FIELD_SIZE; i++)
 		{
-			Position newPosition = new Position(position.getX() + i, position.getY() + i);
-			if (newPosition.getX() < 0 || newPosition.getY() < 0 ||
-					newPosition.getX() >= Desk.FIELD_SIZE  || newPosition.getY() >= Desk.FIELD_SIZE )
+			Position newPosition = new Position(position.getRow() + i, position.getColumn() + i);
+			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
+					newPosition.getRow() >= Desk.FIELD_SIZE  || newPosition.getColumn() >= Desk.FIELD_SIZE )
 			{
 				return result;
 			}

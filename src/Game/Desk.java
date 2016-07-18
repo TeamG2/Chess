@@ -72,8 +72,8 @@ public class Desk {
 		{
 			Pawn black = new Pawn(Colour.BLACK);
 			Pawn white = new Pawn(Colour.WHITE);
-			field[1][i].setFigure(black);
-			field[6][i].setFigure(white);
+			field[1][i].setFigure(white);
+			field[6][i].setFigure(black);
 		}
 	}
 	
@@ -104,7 +104,7 @@ public class Desk {
 	}
 	
 	public Cell getCell(Position pos) {
-		return field[pos.getX()][pos.getY()];
+		return field[pos.getRow()][pos.getColumn()];
 	}
 	
 //	public Figure [] getFigures(Colour colour){

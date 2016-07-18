@@ -1,6 +1,5 @@
 package Game;
 
-import Game.Figure.Figure;
 import Game.Player.*;
 import UI.ConsoleUI;
 

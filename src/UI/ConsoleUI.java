@@ -47,16 +47,16 @@ public class ConsoleUI {
 	{ 
 		Desk desk = GameController.getInstance().getDesk();
 		char [] line={'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
-		for (int i=0;i<=7;i++){
+		for (int i = 7; i >= 0; i--){
 			System.out.print((i+1) + " \t");
 				
-			for(int j=0;j<=7;j++){
+			for(int j = 0; j <= 7; j++){
 				Position pos = new Position(i, j);
-				Figure fig =desk.getCell(pos).getFigure();
+				Figure fig = desk.getCell(pos).getFigure();
 				char c= ' ';
 				if (fig != null)
 					c = fig.getName();
-				if (c==' ')
+				if (c == ' ')
 					System.out.print(".");
 				else
 					System.out.print(c);
@@ -87,17 +87,14 @@ public class ConsoleUI {
 		while (!Pattern.matches("^[A-H][0-7]:[A-H][0-7]$", stringMove)){
 			System.out.println("Invalid input. Enter a string of the form E2:E1");
 			stringMove=in.nextLine();
-		}
-		int x1,y1,x2,y2;
+		}	
+			
+		int columnFrom = stringMove.charAt(0)-'A';
+		int rowFrom = stringMove.charAt(1)-'1';
+		int columnTo = stringMove.charAt(3)-'A';
+		int rowTo = stringMove.charAt(4)-'1';			
 		
-		
-		y1=stringMove.charAt(0)-'A';
-		x1=stringMove.charAt(1)-'1';
-		y2=stringMove.charAt(3)-'A';
-		x2=stringMove.charAt(4)-'1';		
-	
-		
-		Move newMove=new Move(x1,y1,x2,y2);
+		Move newMove=new Move(rowFrom, columnFrom, rowTo, columnTo);
 		
 		return newMove;
 	}

@@ -5,9 +5,9 @@ public class Move {
 	private Position from;
 	private Position to;
 	
-	public Move(int x1,int y1, int x2,int y2){
-		from = new Position(x1,y1);
-		to = new Position(x2,y2);
+	public Move(int rowFrom, int columnFrom, int rowTo, int columnTo){
+		from = new Position(rowFrom, columnFrom);
+		to = new Position(rowTo, columnTo);
 	}
 	
 	public Position getFrom()
