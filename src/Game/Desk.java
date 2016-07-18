@@ -44,7 +44,7 @@ public class Desk {
 		King black = new King(Colour.BLACK);
 		King white = new King(Colour.WHITE);
 		field[0][4].setFigure(white);
-		field[7][3].setFigure(black);	
+		field[7][4].setFigure(black);	
 	}
 	
 	private void setInitialQueens()
@@ -52,7 +52,7 @@ public class Desk {
 		Queen black = new Queen(Colour.BLACK);
 		Queen white = new Queen(Colour.WHITE);
 		field[0][3].setFigure(white);
-		field[7][4].setFigure(black);	
+		field[7][3].setFigure(black);	
 	}
 	
 	private void setInitialBishops()

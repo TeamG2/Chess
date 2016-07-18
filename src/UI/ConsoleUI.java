@@ -47,8 +47,8 @@ public class ConsoleUI {
 	{ 
 		Desk desk = GameController.getInstance().getDesk();
 		char [] line={'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
-		for (int i = 7; i >= 0; i--){
-			System.out.print((i+1) + " \t");
+		for (int i = 0; i <= 7; i++){
+			System.out.print((8 - i) + " \t");
 				
 			for(int j = 0; j <= 7; j++){
 				Position pos = new Position(i, j);
@@ -73,6 +73,11 @@ public class ConsoleUI {
 		System.out.println();
 	}
 	
+	public void showWrongMoveError()
+	{
+		System.out.println("You can't make this move. Please, try again");
+	}
+	
 	public void colorOut(String text, String color)
 	{
 		System.out.println(color + text + ANSI_RESET);
@@ -90,9 +95,9 @@ public class ConsoleUI {
 		}	
 			
 		int columnFrom = stringMove.charAt(0)-'A';
-		int rowFrom = stringMove.charAt(1)-'1';
+		int rowFrom = 7 - (stringMove.charAt(1)-'1');
 		int columnTo = stringMove.charAt(3)-'A';
-		int rowTo = stringMove.charAt(4)-'1';			
+		int rowTo = 7 - (stringMove.charAt(4)-'1');			
 		
 		Move newMove=new Move(rowFrom, columnFrom, rowTo, columnTo);
 		

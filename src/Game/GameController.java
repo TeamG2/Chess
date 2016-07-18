@@ -41,13 +41,13 @@ public class GameController {
 		Colour userColour = ConsoleUI.getInstance().userColour();
 		if (userColour == Colour.WHITE)
 		{
-			players[0] = new User();
-			players[1] = new Bot();
+			players[0] = new User(Colour.WHITE);
+			players[1] = new Bot(Colour.BLACK);
 		}
 		else
 		{
-			players[1] = new User();
-			players[0] = new Bot();
+			players[1] = new User(Colour.BLACK);
+			players[0] = new Bot(Colour.WHITE);
 		}			
 		
 		currentPlayer = 0;
@@ -60,7 +60,10 @@ public class GameController {
 		{
 			if (players[currentPlayer] instanceof User)
 				ConsoleUI.getInstance().representBoard();
-			players[currentPlayer].makeMove();
+			while (!players[currentPlayer].makeMove())
+			{
+				ConsoleUI.getInstance().showWrongMoveError();
+			}
 			currentPlayer = currentPlayer ^ 1; // change player
 		}
 	}

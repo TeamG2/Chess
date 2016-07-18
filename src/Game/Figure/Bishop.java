@@ -61,7 +61,7 @@ public class Bishop extends Figure {
 		
 		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
-			Position newPosition = new Position(position.getRow() - i, position.getColumn() - i);
+			Position newPosition = new Position(position.getRow() + i, position.getColumn() - i);
 			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
 					newPosition.getRow() >= Desk.FIELD_SIZE  || newPosition.getColumn() >= Desk.FIELD_SIZE )
 			{
@@ -83,7 +83,7 @@ public class Bishop extends Figure {
 		
 		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
-			Position newPosition = new Position(position.getRow() + i, position.getColumn() - i);
+			Position newPosition = new Position(position.getRow() + i, position.getColumn() + i);
 			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
 					newPosition.getRow() >= Desk.FIELD_SIZE  || newPosition.getColumn() >= Desk.FIELD_SIZE )
 			{
@@ -99,7 +99,7 @@ public class Bishop extends Figure {
 		return result;
 	}
 	
-	private HashSet<Position> goDownLeft(Position position)
+	private HashSet<Position> goDownRight(Position position)
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
@@ -121,13 +121,13 @@ public class Bishop extends Figure {
 		return result;
 	}
 	
-	private HashSet<Position> goDownRight(Position position)
+	private HashSet<Position> goDownLeft(Position position)
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
 		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
-			Position newPosition = new Position(position.getRow() + i, position.getColumn() + i);
+			Position newPosition = new Position(position.getRow() - i, position.getColumn() - i);
 			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
 					newPosition.getRow() >= Desk.FIELD_SIZE  || newPosition.getColumn() >= Desk.FIELD_SIZE )
 			{
