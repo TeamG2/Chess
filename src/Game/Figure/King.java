@@ -54,7 +54,7 @@ public class King extends Figure{
 			 * 3) ячейка пустая или там находится враг 	
 			 
 			 **/
-			if (newPos.isExsist()
+			if (newPos.isExist()
 					&&(!(newCell.getFigure().getColour() == getColour()))
 					&&(newCell.isFree() || newCell.getFigure().getColour() != getColour())
 				)
