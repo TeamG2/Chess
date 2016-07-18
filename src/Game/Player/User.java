@@ -25,7 +25,8 @@ public class User extends Player {
 		if (cell1.isFree()) return false;
 		if (!fig.isValidMove(move)) return false;
 		if (!cell2.isFree()) cell2.setFree();
-			
+		
+		
 		cell1.setFree();
 		cell2.setFigure(fig);
 		return true;

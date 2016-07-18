@@ -7,9 +7,9 @@ import Game.Position;
 import Game.Player.Colour;
 
 public abstract class Figure {
-	
 	private Colour colour;
 	private char nameFigure;
+
 	
 	public Figure(Colour colour)
 	{

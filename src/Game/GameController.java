@@ -1,12 +1,16 @@
 package Game;
 
+import Game.Figure.Figure;
 import Game.Player.*;
 import UI.ConsoleUI;
 
 public class GameController {
+	
 	private Desk desk;
 	
 	private Player[] players;
+	
+	
 	
 	private int currentPlayer;
 	
@@ -61,4 +65,6 @@ public class GameController {
 			currentPlayer = currentPlayer ^ 1; // change player
 		}
 	}
+	
+	
 }
