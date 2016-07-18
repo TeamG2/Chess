@@ -36,7 +36,15 @@ public abstract class Figure {
 	
 	public abstract HashSet<Position> getPossiblePositions(Position current);
 	
-	public boolean isFigureInSet(char nameFigure, Colour col, HashSet<Position> hash) {
+	public boolean isFigureInSet(char nameFigure, Colour col, HashSet<Position> set) {
+		for (Position pos : set) {
+			Figure currentFigure = GameController.getInstance().getDesk().getCell(pos).getFigure();
+			Colour currentCol = currentFigure.getColour();
+			char currentNameFigure = currentFigure.getName();
+			if (col == currentCol && nameFigure == currentNameFigure) {
+				return true;
+			}
+		}
 		return false;
 	}
 	
