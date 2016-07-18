@@ -23,6 +23,7 @@ public class User extends Player {
 		Figure fig = cell1.getFigure();
 		
 		if (cell1.isFree()) return false;
+		if (fig.getColour() != this.getColour()) return false;
 		if (!fig.isValidMove(move)) return false;
 		if (!cell2.isFree()) cell2.setFree();
 		

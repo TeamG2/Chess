@@ -42,7 +42,7 @@ public class Desk {
 		King black = new King(Colour.BLACK);
 		King white = new King(Colour.WHITE);
 		field[0][4].setFigure(white);
-		field[7][3].setFigure(black);	
+		field[7][4].setFigure(black);	
 	}
 	
 	private void setInitialQueens()
@@ -50,7 +50,7 @@ public class Desk {
 		Queen black = new Queen(Colour.BLACK);
 		Queen white = new Queen(Colour.WHITE);
 		field[0][3].setFigure(white);
-		field[7][4].setFigure(black);	
+		field[7][3].setFigure(black);	
 	}
 	
 	private void setInitialBishops()
@@ -72,8 +72,8 @@ public class Desk {
 		{
 			Pawn black = new Pawn(Colour.BLACK);
 			Pawn white = new Pawn(Colour.WHITE);
-			field[1][i].setFigure(black);
-			field[6][i].setFigure(white);
+			field[1][i].setFigure(white);
+			field[6][i].setFigure(black);
 		}
 	}
 	
@@ -104,7 +104,7 @@ public class Desk {
 	}
 	
 	public Cell getCell(Position pos) {
-		return field[pos.getX()][pos.getY()];
+		return field[pos.getRow()][pos.getColumn()];
 	}
 	
 //	public Figure [] getFigures(Colour colour){

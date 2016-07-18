@@ -59,11 +59,11 @@ public class Bishop extends Figure {
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
-		for (int i = 0; i < Desk.FIELD_SIZE; i++)
+		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
-			Position newPosition = new Position(position.getX() - i, position.getY() - i);
-			if (newPosition.getX() < 0 || newPosition.getY() < 0 ||
-					newPosition.getX() >= Desk.FIELD_SIZE  || newPosition.getY() >= Desk.FIELD_SIZE )
+			Position newPosition = new Position(position.getRow() + i, position.getColumn() - i);
+			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
+					newPosition.getRow() >= Desk.FIELD_SIZE  || newPosition.getColumn() >= Desk.FIELD_SIZE )
 			{
 				return result;
 			}	
@@ -81,36 +81,14 @@ public class Bishop extends Figure {
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
-		for (int i = 0; i < Desk.FIELD_SIZE; i++)
+		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
-			Position newPosition = new Position(position.getX() + i, position.getY() - i);
-			if (newPosition.getX() < 0 || newPosition.getY() < 0 ||
-					newPosition.getX() >= Desk.FIELD_SIZE  || newPosition.getY() >= Desk.FIELD_SIZE )
+			Position newPosition = new Position(position.getRow() + i, position.getColumn() + i);
+			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
+					newPosition.getRow() >= Desk.FIELD_SIZE  || newPosition.getColumn() >= Desk.FIELD_SIZE )
 			{
 				return result;
 			}
-			
-			if (!addNewPosition(result, newPosition))
-			{
-				return result;
-			}
-		}
-		
-		return result;
-	}
-	
-	private HashSet<Position> goDownLeft(Position position)
-	{
-		HashSet<Position> result = new HashSet<Position>();
-		
-		for (int i = 0; i < Desk.FIELD_SIZE; i++)
-		{
-			Position newPosition = new Position(position.getX() - i, position.getY() + i);
-			if (newPosition.getX() < 0 || newPosition.getY() < 0 ||
-					newPosition.getX() >= Desk.FIELD_SIZE  || newPosition.getY() >= Desk.FIELD_SIZE )
-			{
-				return result;
-			}	
 			
 			if (!addNewPosition(result, newPosition))
 			{
@@ -125,11 +103,33 @@ public class Bishop extends Figure {
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
-		for (int i = 0; i < Desk.FIELD_SIZE; i++)
+		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
-			Position newPosition = new Position(position.getX() + i, position.getY() + i);
-			if (newPosition.getX() < 0 || newPosition.getY() < 0 ||
-					newPosition.getX() >= Desk.FIELD_SIZE  || newPosition.getY() >= Desk.FIELD_SIZE )
+			Position newPosition = new Position(position.getRow() - i, position.getColumn() + i);
+			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
+					newPosition.getRow() >= Desk.FIELD_SIZE  || newPosition.getColumn() >= Desk.FIELD_SIZE )
+			{
+				return result;
+			}	
+			
+			if (!addNewPosition(result, newPosition))
+			{
+				return result;
+			}
+		}
+		
+		return result;
+	}
+	
+	private HashSet<Position> goDownLeft(Position position)
+	{
+		HashSet<Position> result = new HashSet<Position>();
+		
+		for (int i = 1; i < Desk.FIELD_SIZE; i++)
+		{
+			Position newPosition = new Position(position.getRow() - i, position.getColumn() - i);
+			if (newPosition.getRow() < 0 || newPosition.getColumn() < 0 ||
+					newPosition.getRow() >= Desk.FIELD_SIZE  || newPosition.getColumn() >= Desk.FIELD_SIZE )
 			{
 				return result;
 			}

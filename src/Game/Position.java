@@ -1,22 +1,49 @@
 package Game;
 
 public class Position {
-	private int x;
-	private int y;
+	private int row;
+	private int column;
 	
-	public Position(int x1,int y1){
-		x=x1;
-		y=y1;
+	public Position(int row,int column){
+		this.row = row;
+		this.column = column;
 	}
 	
-	public int getX()
+	public int getRow()
 	{
-		return x;
+		return row;
 	}
 	
-	public int getY()
+	public int getColumn()
 	{
-		return y;
+		return column;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + column;
+		result = prime * result + row;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Position other = (Position) obj;
+		if (column != other.column)
+			return false;
+		if (row != other.row)
+			return false;
+		return true;
+	}
+	boolean isExsist(){
+		return 0<=row && row<=7 && 0<=column && column<=7;
+	}
 }
