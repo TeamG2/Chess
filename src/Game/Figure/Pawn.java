@@ -49,29 +49,36 @@ public class Pawn extends Figure {
 					setOfPosibleMoves.add(new Position(row + 1, column + 1));
 				}
 			}
-
 		}	
 		
 		if ( getColour() == Colour.BLACK){
-			int x=current.getX(),y=current.getY();
+			int row = current.getRow(), column = current.getColumn();
 			
-			if (y==7)System.out.print("Error! Pawn.getPossiblePositions()");
+			if (row == 7) System.out.print("Error! Pawn.getPossiblePositions()");
 			
-			if (y>0) if (desk.getCell(new Position(x,y-1)).isFree()) setOfPosibleMoves.add(new Position(x,y-1));
+			if (row > 0)
+			{
+				setOfPosibleMoves.add(new Position(row - 1, column));
+			}
 
-			if (y==6)if (desk.getCell(new Position(x,5)).isFree()) setOfPosibleMoves.add(new Position(x,5));
+			if (row == 6)
+			{
+				setOfPosibleMoves.add(new Position(4, column));
+			}
 			
-			if (x>0){
-			Cell newCell = desk.getCell(new Position(x-1,y-1));
-				if  (newCell.getFigure().getColour() != getColour()){
-					setOfPosibleMoves.add(new Position(x-1,y-1));
+			Desk desk = GameController.getInstance().getDesk();
+			
+			if (column > 0){
+				Cell newCell = desk.getCell(new Position(row - 1, column - 1));
+				if  (!newCell.isFree() && newCell.getFigure().getColour() != this.getColour()){
+					setOfPosibleMoves.add(new Position(row + 1, column - 1));
 				}
 			}
 			
-			if (x<7){
-			Cell newCell = desk.getCell(new Position(x+1,y-1));
-				if  (newCell.getFigure().getColour() != this.getColour()){
-					setOfPosibleMoves.add(new Position(x+1,y+1));
+			if (column < 7){
+				Cell newCell = desk.getCell(new Position(row - 1, column + 1));
+				if  (!newCell.isFree() && newCell.getFigure().getColour() != this.getColour()){
+					setOfPosibleMoves.add(new Position(row + 1, column + 1));
 				}
 			}
 		}
