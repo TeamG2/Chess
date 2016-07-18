@@ -10,6 +10,10 @@ import UI.ConsoleUI;
 
 public class User extends Player {
 
+	public User(Colour colour) {
+		super(colour);
+	}
+
 	@Override
 	public boolean makeMove() {
 		Move move = ConsoleUI.getInstance().getMove();
