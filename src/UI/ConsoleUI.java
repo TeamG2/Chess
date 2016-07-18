@@ -73,6 +73,11 @@ public class ConsoleUI {
 		System.out.println();
 	}
 	
+	public void showWrongMoveError()
+	{
+		System.out.println("You can't make this move. Please, try again");
+	}
+	
 	public void colorOut(String text, String color)
 	{
 		System.out.println(color + text + ANSI_RESET);
