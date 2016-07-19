@@ -1,15 +1,14 @@
 package Game;
 
-<<<<<<< HEAD
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-=======
+
 import Game.Evaluation.StandartEvaluator;
->>>>>>> 8cb9923194896a6a62669a7ca5bc1ab806b6f3b2
+
 import Game.Player.*;
 import UI.ConsoleUI;
 

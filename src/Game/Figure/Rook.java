@@ -58,7 +58,7 @@ public class Rook extends Figure{
 		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
 			Position newPosition = new Position(position.getRow() + i, position.getColumn());
-			if (newPosition.isExist())
+			if (!newPosition.isExist())
 			{
 				return result;
 			}	
@@ -79,7 +79,7 @@ public class Rook extends Figure{
 		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
 			Position newPosition = new Position(position.getRow(), position.getColumn() + i);
-			if (newPosition.isExist() )
+			if (!newPosition.isExist() )
 			{
 				return result;
 			}
@@ -100,7 +100,7 @@ public class Rook extends Figure{
 		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
 			Position newPosition = new Position(position.getRow() - i, position.getColumn());
-			if (newPosition.isExist())
+			if (!newPosition.isExist())
 			{
 				return result;
 			}	
@@ -121,7 +121,7 @@ public class Rook extends Figure{
 		for (int i = 1; i < Desk.FIELD_SIZE; i++)
 		{
 			Position newPosition = new Position(position.getRow(), position.getColumn() - i);
-			if (newPosition.isExist() )
+			if (!newPosition.isExist() )
 			{
 				return result;
 			}

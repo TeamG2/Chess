@@ -2,6 +2,7 @@ package Game.Figure;
 
 import java.util.HashSet;
 import java.util.List;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -59,7 +60,16 @@ public class King extends Figure{
 				)
 			{
 						
-				Desk thisGame=new Desk(GameController.getInstance().getDesk());
+				Desk thisGame = null;
+				try {
+					thisGame = GameController.getInstance().getDesk().cloneDesk();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				thisGame.moveFigure(desk.getCell(current), desk.getCell(newPos));
 					if (!thisGame.isShahFor(getColour())){
 						setOfPosibleMoves.add(newPos);

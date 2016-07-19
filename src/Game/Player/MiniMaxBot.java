@@ -1,5 +1,6 @@
 package Game.Player;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import Game.GameController;
 import Game.Position;
 import Game.Evaluation.Evaluator;
 import Game.Figure.Figure;
+import Game.Figure.King;
 
 public class MiniMaxBot extends Player {
 	
@@ -44,14 +46,23 @@ public class MiniMaxBot extends Player {
 	    				desk.getCell(position).getFigure().getColour() == colour)
 	    		{
 	    			Figure figure = desk.getCell(position).getFigure();
+	    			if (figure instanceof King) continue;
 	    			HashSet<Position> possiblePositions = figure.getPossiblePositions(desk, position);	    			
 	    			
 	    			for (Position newPosition : possiblePositions) {
-	    				Desk newDesk = new Desk();
-		    			// todo: copy desk	    				
+	    				Desk newDesk = null;
+						try {
+							newDesk = desk.cloneDesk();
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}    				
 	    				newDesk.moveFigure(position, newPosition);
 	    				
-	    				ScoredMove score = mini(newDesk, depth, colour.getOpposite());
+	    				ScoredMove score = mini(newDesk, depth - 1, colour.getOpposite());
 	    				if( score.score > max.score )
 	    				{
 	    					max.from = position;
@@ -80,14 +91,24 @@ public class MiniMaxBot extends Player {
 	    				desk.getCell(position).getFigure().getColour() == colour)
 	    		{
 	    			Figure figure = desk.getCell(position).getFigure();
+	    			if (figure instanceof King) continue;
 	    			HashSet<Position> possiblePositions = figure.getPossiblePositions(desk, position);	    			
 	    			
 	    			for (Position newPosition : possiblePositions) {
-	    				Desk newDesk = new Desk();
+	    				Desk newDesk = null;
+						try {
+							newDesk = desk.cloneDesk();
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 		    			// todo: copy desk	    				
 	    				newDesk.moveFigure(position, newPosition);
 	    				
-	    				ScoredMove score = mini(newDesk, depth, colour.getOpposite());
+	    				ScoredMove score = maxi(newDesk, depth - 1, colour.getOpposite());
 	    				if( score.score < min.score )
 	    				{
 	    		            min.from = position;

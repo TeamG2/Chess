@@ -1,5 +1,6 @@
 package Game.Figure;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
 import Game.Cell;
@@ -9,7 +10,7 @@ import Game.Move;
 import Game.Position;
 import Game.Player.Colour;
 
-public abstract class Figure {
+public abstract class Figure implements Serializable {
 	private Colour colour;
 	private char nameFigure;
 	private static Figure Buffer;

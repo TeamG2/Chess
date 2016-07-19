@@ -160,7 +160,7 @@ public class Desk implements Serializable  {
 			for (int j=0; j <=  FIELD_SIZE-1; j++) {
 				Figure fig = field[i][j].getFigure();
 				if (fig.getColour() == colour) { 			// Берем фигуру свого цвета
-					HashSet<Position> set = fig.getPossiblePositions(new Position(i, j));
+					HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
 					Position pos1 = new Position(i, j);
 					for (Position pos2 : set) {
 						fig.makeSystemMove(pos1, pos2); 	// Делаем виртуальный ход (возможно срубаем), чтобы проверить, можно ли защитить короля
