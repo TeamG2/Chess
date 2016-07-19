@@ -22,22 +22,20 @@ public class Bishop extends Figure {
 	
 
 	@Override
-	public HashSet<Position> getPossiblePositions(Position current) {
+	public HashSet<Position> getPossiblePositions(Desk desk, Position current) {
 		
 		HashSet<Position> result = new HashSet<Position>();
-		result.addAll(goUpLeft(current));
-		result.addAll(goUpRight(current));
-		result.addAll(goDownLeft(current));
-		result.addAll(goDownRight(current));
+		result.addAll(goUpLeft(desk, current));
+		result.addAll(goUpRight(desk, current));
+		result.addAll(goDownLeft(desk, current));
+		result.addAll(goDownRight(desk, current));
 		
 		return result;
 	} 	
 	
 	// return false if need to stop loop
-	private boolean addNewPosition(HashSet<Position> result, Position newPosition)
-	{
-		Desk desk = GameController.getInstance().getDesk();
-		
+	private boolean addNewPosition(Desk desk, HashSet<Position> result, Position newPosition)
+	{		
 		Cell newCell = desk.getCell(newPosition);
 		if (newCell.isFree())
 		{
@@ -55,7 +53,7 @@ public class Bishop extends Figure {
 		}
 	}
 	
-	private HashSet<Position> goUpLeft(Position position)
+	private HashSet<Position> goUpLeft(Desk desk, Position position)
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
@@ -68,7 +66,7 @@ public class Bishop extends Figure {
 				return result;
 			}	
 			
-			if (!addNewPosition(result, newPosition))
+			if (!addNewPosition(desk, result, newPosition))
 			{
 				return result;
 			}
@@ -77,7 +75,7 @@ public class Bishop extends Figure {
 		return result;
 	}
 	
-	private HashSet<Position> goUpRight(Position position)
+	private HashSet<Position> goUpRight(Desk desk, Position position)
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
@@ -90,7 +88,7 @@ public class Bishop extends Figure {
 				return result;
 			}
 			
-			if (!addNewPosition(result, newPosition))
+			if (!addNewPosition(desk, result, newPosition))
 			{
 				return result;
 			}
@@ -99,7 +97,7 @@ public class Bishop extends Figure {
 		return result;
 	}
 	
-	private HashSet<Position> goDownRight(Position position)
+	private HashSet<Position> goDownRight(Desk desk, Position position)
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
@@ -112,7 +110,7 @@ public class Bishop extends Figure {
 				return result;
 			}	
 			
-			if (!addNewPosition(result, newPosition))
+			if (!addNewPosition(desk, result, newPosition))
 			{
 				return result;
 			}
@@ -121,7 +119,7 @@ public class Bishop extends Figure {
 		return result;
 	}
 	
-	private HashSet<Position> goDownLeft(Position position)
+	private HashSet<Position> goDownLeft(Desk desk, Position position)
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
@@ -134,7 +132,7 @@ public class Bishop extends Figure {
 				return result;
 			}
 			
-			if (!addNewPosition(result, newPosition))
+			if (!addNewPosition(desk, result, newPosition))
 			{
 				return result;
 			}

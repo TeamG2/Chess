@@ -29,12 +29,12 @@ public abstract class Figure {
 		return nameFigure;
 	}
 	
-	public boolean isValidMove(Move move)
+	public boolean isValidMove(Desk desk, Move move)
 	{		
-		return getPossiblePositions(move.getFrom()).contains(move.getTo());
+		return getPossiblePositions(desk, move.getFrom()).contains(move.getTo());
 	}
 	
-	public abstract HashSet<Position> getPossiblePositions(Position current);
+	public abstract HashSet<Position> getPossiblePositions(Desk desk, Position current);
 	
 	public boolean isFigureInSet(char nameFigure, Colour col, HashSet<Position> hash) {
 		return false;
@@ -48,7 +48,7 @@ public abstract class Figure {
 		
 		if (cell1.isFree()) return false;
 		
-		if (!this.isValidMove(move)) return false;
+		if (!this.isValidMove(desk, move)) return false;
 		
 		if (!cell2.isFree()) {
 			Buffer = cell2.getFigure();

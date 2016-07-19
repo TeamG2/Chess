@@ -45,6 +45,15 @@ public class Desk {
 		from.setFree();		
 	}
 	
+	public void moveFigure(Position from, Position to)
+	{
+		Cell fromCell = this.getCell(from);
+		Cell toCell = this.getCell(to);
+		
+		toCell.setFigure(fromCell.getFigure());
+		fromCell.setFree();		
+	}
+	
 	private void setInitialKings()
 	{
 		King black = new King(Colour.BLACK);
@@ -115,6 +124,11 @@ public class Desk {
 		return field[pos.getRow()][pos.getColumn()];
 	}
 	
+	public Cell getCell(int row, int column) {
+		Position pos = new Position(row, column);
+		return field[pos.getRow()][pos.getColumn()];
+	}
+	
 //	public Figure [] getFigures(Colour colour){
 //		Figure [] allFigs;
 //		int i, j;
@@ -127,7 +141,7 @@ public class Desk {
 			for (int j=0; j <=  FIELD_SIZE-1; j++) {
 				Figure fig = field[i][j].getFigure();
 					if (fig.getColour() == GameController.getInstance().changeCol(colour)) {
-						HashSet<Position> set = fig.getPossiblePositions(new Position(i, j));
+						HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
 						if (fig.isFigureInSet('K', colour, set)) return true;
 					}
 			}	
@@ -140,7 +154,7 @@ public class Desk {
 			for (int j=0; j <=  FIELD_SIZE-1; j++) {
 				Figure fig = field[i][j].getFigure();
 				if (fig.getColour() == colour) {
-					HashSet<Position> set = fig.getPossiblePositions(new Position(i, j));
+					HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
 					Position pos1 = new Position(i, j);
 					for (Position pos2 : set) {
 						fig.makeSystemMove(pos1, pos2); // Делаем виртуальный ход (возможно срубаем), чтобы проверить, можно ли защитить короля

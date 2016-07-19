@@ -1,5 +1,6 @@
 package Game;
 
+import Game.Evaluation.StandartEvaluator;
 import Game.Player.*;
 import UI.ConsoleUI;
 
@@ -42,12 +43,12 @@ public class GameController {
 		if (userColour == Colour.WHITE)
 		{
 			players[0] = new User(Colour.WHITE);
-			players[1] = new Bot(Colour.BLACK);
+			players[1] = new MiniMaxBot(Colour.BLACK, new StandartEvaluator());
 		}
 		else
 		{
 			players[1] = new User(Colour.BLACK);
-			players[0] = new Bot(Colour.WHITE);
+			players[0] = new MiniMaxBot(Colour.WHITE, new StandartEvaluator());
 		}			
 		
 		currentPlayer = 0;

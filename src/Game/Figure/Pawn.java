@@ -16,10 +16,9 @@ public class Pawn extends Figure {
 	}
 
 	@Override
-	public HashSet<Position> getPossiblePositions(Position current) {
+	public HashSet<Position> getPossiblePositions(Desk desk, Position current) {
 		// TODO Auto-generated method stub
 		HashSet<Position> setOfPosibleMoves= new HashSet <>();
-		Desk desk = GameController.getInstance().getDesk();
 		if ( getColour() == Colour.WHITE){
 			int row = current.getRow(), column = current.getColumn();
 			

@@ -4,6 +4,18 @@ package Game.Player;
 public enum Colour 
 {
 	BLACK,
-	WHITE
+	WHITE;
+	
+	private Colour opposite;
+	
+	static {
+		BLACK.opposite = WHITE;
+		WHITE.opposite = BLACK;
+    }
+	
+	public Colour getOpposite()
+	{
+		return opposite;
+	}
 }
 
