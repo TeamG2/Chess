@@ -1,5 +1,11 @@
 package Game;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import Game.Player.*;
 import UI.ConsoleUI;
 
@@ -30,6 +36,18 @@ public class GameController {
 	public Desk getDesk()
 	{
 		return desk;
+	}
+	
+	public Desk cloneDesk() throws IOException, ClassNotFoundException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream ous = new ObjectOutputStream(baos);
+        //сохраняем состояние доски в поток и закрываем его(поток)
+        ous.writeObject(getDesk());
+        ous.close();
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(bais);
+        Desk cloneDesk = (Desk) ois.readObject();
+        return cloneDesk;
 	}
 	
 	public void startNewGame()
