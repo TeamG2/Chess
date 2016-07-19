@@ -14,6 +14,10 @@ public class Cell {
 	public Cell(){
 		this.figure = null;
 	}
+	//коппирующий конструктор
+	public Cell(Cell newCell){
+		figure= new Figure(newCell.getFigure());
+	}
 	
 	public boolean isFree(){
 		if(this.figure == null){

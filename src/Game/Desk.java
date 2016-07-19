@@ -17,9 +17,24 @@ public class Desk {
 	
 	private Cell[][] field = new Cell[FIELD_SIZE][FIELD_SIZE];
 	
+	//коппирующий конструктор
 	public Desk(Desk currentGame){
-		
-	};
+		for (int i=0; i<FIELD_SIZE;i++){
+			for (int j=0; j<FIELD_SIZE;j++){
+				setCells(i,j,new Cell(currentGame.getCell(i,j)));
+			}
+		}
+	}
+	
+	public Cell getCell(int i, int j){
+		return field[i][j];
+	}
+	
+	private void setCells(int i,int j, Cell newCell)
+	{
+		field[i][j] = newCell;
+	}
+	// конец коппирующий конструктор
 	
 	public void setInitialState()
 	{		
@@ -42,6 +57,7 @@ public class Desk {
 			}
 		}
 	}
+	
 	
 	public void moveFigure(Cell from, Cell to)
 	{

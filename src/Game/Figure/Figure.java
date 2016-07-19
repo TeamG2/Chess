@@ -14,6 +14,10 @@ public abstract class Figure {
 	private char nameFigure;
 	private static Figure Buffer;
 
+	public Figure(Figure newFigure){
+		colour=newFigure.getColour();
+		nameFigure=newFigure.getName();
+	}
 	
 	public Figure(Colour colour)
 	{
