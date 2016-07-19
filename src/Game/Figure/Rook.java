@@ -20,22 +20,20 @@ public class Rook extends Figure{
 	}
 	
 	@Override
-	public HashSet<Position> getPossiblePositions(Position current) {
+	public HashSet<Position> getPossiblePositions(Desk desk, Position current) {
 		HashSet<Position> result = new HashSet<Position>();
 	
-		result.addAll(goUp(current));
-		result.addAll(goRight(current));
-		result.addAll(goDown(current));
-		result.addAll(goLeft(current));
+		result.addAll(goUp(desk, current));
+		result.addAll(goRight(desk, current));
+		result.addAll(goDown(desk, current));
+		result.addAll(goLeft(desk, current));
 		
 		return result;
 	} 	
 	
 	// return false if need to stop loop
-	private boolean addNewPosition(HashSet<Position> result, Position newPosition)
-	{
-		Desk desk = GameController.getInstance().getDesk();
-		
+	private boolean addNewPosition(Desk desk, HashSet<Position> result, Position newPosition)
+	{		
 		Cell newCell = desk.getCell(newPosition);
 		if (newCell.isFree())
 		{
@@ -53,7 +51,7 @@ public class Rook extends Figure{
 		}
 	}
 	
-	private HashSet<Position> goUp(Position position)
+	private HashSet<Position> goUp(Desk desk, Position position)
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
@@ -65,7 +63,7 @@ public class Rook extends Figure{
 				return result;
 			}	
 			
-			if (!addNewPosition(result, newPosition))
+			if (!addNewPosition(desk, result, newPosition))
 			{
 				return result;
 			}
@@ -74,7 +72,7 @@ public class Rook extends Figure{
 		return result;
 	}
 	
-	private HashSet<Position> goRight(Position position)
+	private HashSet<Position> goRight(Desk desk, Position position)
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
@@ -86,7 +84,7 @@ public class Rook extends Figure{
 				return result;
 			}
 			
-			if (!addNewPosition(result, newPosition))
+			if (!addNewPosition(desk, result, newPosition))
 			{
 				return result;
 			}
@@ -95,7 +93,7 @@ public class Rook extends Figure{
 		return result;
 	}
 	
-	private HashSet<Position> goDown(Position position)
+	private HashSet<Position> goDown(Desk desk, Position position)
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
@@ -107,7 +105,7 @@ public class Rook extends Figure{
 				return result;
 			}	
 			
-			if (!addNewPosition(result, newPosition))
+			if (!addNewPosition(desk, result, newPosition))
 			{
 				return result;
 			}
@@ -116,7 +114,7 @@ public class Rook extends Figure{
 		return result;
 	}
 	
-	private HashSet<Position> goLeft(Position position)
+	private HashSet<Position> goLeft(Desk desk, Position position)
 	{
 		HashSet<Position> result = new HashSet<Position>();
 		
@@ -128,7 +126,7 @@ public class Rook extends Figure{
 				return result;
 			}
 			
-			if (!addNewPosition(result, newPosition))
+			if (!addNewPosition(desk, result, newPosition))
 			{
 				return result;
 			}

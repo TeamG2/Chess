@@ -23,16 +23,15 @@ public class King extends Figure{
 	}
 
 	@Override
-	public boolean isValidMove(Move move) {
+	public boolean isValidMove(Desk desk, Move move) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public HashSet<Position> getPossiblePositions(Position current) {
+	public HashSet<Position> getPossiblePositions(Desk desk, Position current) {
 		// TODO Auto-generated method stub
 		HashSet<Position> setOfPosibleMoves= new HashSet <>();
-		Desk desk = GameController.getInstance().getDesk();
 		int y = current.getRow(), x = current.getColumn();
 		
 		List<Position> set=new ArrayList<>();

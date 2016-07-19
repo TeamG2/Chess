@@ -21,10 +21,9 @@ public class Knight extends Figure {
 	}
 
 	@Override
-	public HashSet<Position> getPossiblePositions(Position current) {		
+	public HashSet<Position> getPossiblePositions(Desk desk, Position current) {		
 		HashSet<Position> result = new HashSet<Position>();
 		
-		Desk desk = GameController.getInstance().getDesk();
 		for (int i = -1; i <= 1; i += 2)
 		{
 			for (int j = -1; j <= 1; j += 2)

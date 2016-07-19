@@ -23,25 +23,6 @@ public class Desk implements Serializable  {
 	
 	private Cell[][] field = new Cell[FIELD_SIZE][FIELD_SIZE];
 	
-//	//коппирующий конструктор
-//	public Desk(Desk currentGame){
-//		for (int i=0; i<FIELD_SIZE;i++){
-//			for (int j=0; j<FIELD_SIZE;j++){
-//				setCells(i,j,new Cell(currentGame.getCell(i,j)));
-//			}
-//		}
-//	}
-	
-	public Cell getCell(int i, int j){
-		return field[i][j];
-	}
-	
-	private void setCells(int i,int j, Cell newCell)
-	{
-		field[i][j] = newCell;
-	}
-	// конец коппирующий конструктор
-	
 	public void setInitialState()
 	{		
 		this.setCells();
@@ -64,11 +45,19 @@ public class Desk implements Serializable  {
 		}
 	}
 	
-	
 	public void moveFigure(Cell from, Cell to)
 	{
 		to.setFigure(from.getFigure());
 		from.setFree();		
+	}
+	
+	public void moveFigure(Position from, Position to)
+	{
+		Cell fromCell = this.getCell(from);
+		Cell toCell = this.getCell(to);
+		
+		toCell.setFigure(fromCell.getFigure());
+		fromCell.setFree();		
 	}
 	
 	private void setInitialKings()
@@ -141,6 +130,11 @@ public class Desk implements Serializable  {
 		return field[pos.getRow()][pos.getColumn()];
 	}
 	
+	public Cell getCell(int row, int column) {
+		Position pos = new Position(row, column);
+		return field[pos.getRow()][pos.getColumn()];
+	}
+	
 //	public Figure [] getFigures(Colour colour){
 //		Figure [] allFigs;
 //		int i, j;
@@ -149,12 +143,11 @@ public class Desk implements Serializable  {
 //	}
 	
 	public boolean isShahFor(Colour colour) {
-		Colour oppositeCol = GameController.getInstance().changeCol(colour);
 		for (int i=0; i <= FIELD_SIZE-1; i++) {
 			for (int j=0; j <=  FIELD_SIZE-1; j++) {
 				Figure fig = field[i][j].getFigure();
-					if (fig.getColour() == oppositeCol) { 
-						HashSet<Position> set = fig.getPossiblePositions(new Position(i, j));
+					if (fig.getColour() == GameController.getInstance().changeCol(colour)) {
+						HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
 						if (fig.isFigureInSet('K', colour, set)) return true;
 					}
 			}	

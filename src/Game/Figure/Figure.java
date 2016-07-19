@@ -14,10 +14,6 @@ public abstract class Figure {
 	private char nameFigure;
 	private static Figure Buffer;
 
-	public Figure(Figure newFigure){
-		colour=newFigure.getColour();
-		nameFigure=newFigure.getName();
-	}
 	
 	public Figure(Colour colour)
 	{
@@ -33,22 +29,14 @@ public abstract class Figure {
 		return nameFigure;
 	}
 	
-	public boolean isValidMove(Move move)
+	public boolean isValidMove(Desk desk, Move move)
 	{		
-		return getPossiblePositions(move.getFrom()).contains(move.getTo());
+		return getPossiblePositions(desk, move.getFrom()).contains(move.getTo());
 	}
 	
-	public abstract HashSet<Position> getPossiblePositions(Position current);
+	public abstract HashSet<Position> getPossiblePositions(Desk desk, Position current);
 	
-	public boolean isFigureInSet(char nameFigure, Colour col, HashSet<Position> set) {
-		for (Position pos : set) {
-			Figure currentFigure = GameController.getInstance().getDesk().getCell(pos).getFigure();
-			Colour currentCol = currentFigure.getColour();
-			char currentNameFigure = currentFigure.getName();
-			if (col == currentCol && nameFigure == currentNameFigure) {
-				return true;
-			}
-		}
+	public boolean isFigureInSet(char nameFigure, Colour col, HashSet<Position> hash) {
 		return false;
 	}
 	
@@ -60,7 +48,7 @@ public abstract class Figure {
 		
 		if (cell1.isFree()) return false;
 		
-		if (!this.isValidMove(move)) return false; //Если этот метод не будет нигде применяться кроме isCheckMate() - удалить эту строку 
+		if (!this.isValidMove(desk, move)) return false;
 		
 		if (!cell2.isFree()) {
 			Buffer = cell2.getFigure();
