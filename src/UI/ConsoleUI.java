@@ -39,7 +39,7 @@ public class ConsoleUI {
 		
 		String s = sc.next();
 		
-		if (s == "W") return Colour.WHITE;
+		if (s.equals("W")) return Colour.WHITE;
 		else return Colour.BLACK;
 	}
 
