@@ -1,5 +1,11 @@
 package Game;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashSet;
 
 import Game.Figure.Bishop;
@@ -11,7 +17,7 @@ import Game.Figure.Queen;
 import Game.Figure.Rook;
 import Game.Player.Colour;
 
-public class Desk {
+public class Desk implements Serializable  {
 
 	public static final int FIELD_SIZE = 8; 
 	
@@ -171,7 +177,18 @@ public class Desk {
 		}
 		return true;	
 	}
-		
+	
+	public Desk cloneDesk() throws IOException, ClassNotFoundException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream ous = new ObjectOutputStream(baos);
+        //сохраняем состояние доски в поток и закрываем его(поток)
+        ous.writeObject(this);
+        ous.close();
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(bais);
+        Desk cloneDesk = (Desk) ois.readObject();
+        return cloneDesk;
+	}	
 	
 	
 
