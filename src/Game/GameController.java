@@ -81,7 +81,10 @@ public class GameController {
 		{
 			if (players[currentPlayer] instanceof User)
 				ConsoleUI.getInstance().representBoard();
-			players[currentPlayer].makeMove();
+			while (!players[currentPlayer].makeMove())
+			{
+				ConsoleUI.getInstance().showWrongMoveError();
+			}
 			currentPlayer = currentPlayer ^ 1; // change player
 		}
 	}
