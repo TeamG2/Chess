@@ -1,5 +1,14 @@
 package Game;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+
+import Game.Evaluation.StandartEvaluator;
+import Game.Evaluation.TableEvaluator;
 import Game.Player.*;
 import UI.ConsoleUI;
 
@@ -32,6 +41,18 @@ public class GameController {
 		return desk;
 	}
 	
+	public Desk cloneDesk() throws IOException, ClassNotFoundException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream ous = new ObjectOutputStream(baos);
+        //сохраняем состояние доски в поток и закрываем его(поток)
+        ous.writeObject(getDesk());
+        ous.close();
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(bais);
+        Desk cloneDesk = (Desk) ois.readObject();
+        return cloneDesk;
+	}
+	
 	public void startNewGame()
 	{
 		desk = new Desk();
@@ -41,13 +62,13 @@ public class GameController {
 		Colour userColour = ConsoleUI.getInstance().userColour();
 		if (userColour == Colour.WHITE)
 		{
-			players[0] = new User();
-			players[1] = new Bot();
+			players[0] = new User(Colour.WHITE);
+			players[1] = new MiniMaxBot(Colour.BLACK, new TableEvaluator());
 		}
 		else
 		{
-			players[1] = new User();
-			players[0] = new Bot();
+			players[1] = new User(Colour.BLACK);
+			players[0] = new MiniMaxBot(Colour.WHITE, new TableEvaluator());
 		}			
 		
 		currentPlayer = 0;
@@ -60,13 +81,16 @@ public class GameController {
 		{
 			if (players[currentPlayer] instanceof User)
 				ConsoleUI.getInstance().representBoard();
-			while (!players[currentPlayer].makeMove())
-			{
-				ConsoleUI.getInstance().showWrongMoveError();
-			}
+			players[currentPlayer].makeMove();
 			currentPlayer = currentPlayer ^ 1; // change player
 		}
 	}
 	
-	
+	public Colour changeCol(Colour col) {
+		if (col == Colour.WHITE) {
+			return Colour.BLACK;
+		}
+		else return Colour.WHITE;
+	} 
+
 }

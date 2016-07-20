@@ -1,8 +1,10 @@
 package Game;
 
+import java.io.Serializable;
+
 import Game.Figure.Figure;
 
-public class Cell {
+public class Cell implements Serializable {
 	
 	private Figure figure;
 	
@@ -14,6 +16,7 @@ public class Cell {
 	public Cell(){
 		this.figure = null;
 	}
+
 	
 	public boolean isFree(){
 		if(this.figure == null){

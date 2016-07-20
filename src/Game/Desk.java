@@ -1,5 +1,13 @@
 package Game;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.HashSet;
+
 import Game.Figure.Bishop;
 import Game.Figure.Figure;
 import Game.Figure.King;
@@ -9,7 +17,7 @@ import Game.Figure.Queen;
 import Game.Figure.Rook;
 import Game.Player.Colour;
 
-public class Desk {
+public class Desk implements Serializable  {
 
 	public static final int FIELD_SIZE = 8; 
 	
@@ -37,20 +45,35 @@ public class Desk {
 		}
 	}
 	
+	public void moveFigure(Cell from, Cell to)
+	{
+		to.setFigure(from.getFigure());
+		from.setFree();		
+	}
+	
+	public void moveFigure(Position from, Position to)
+	{
+		Cell fromCell = this.getCell(from);
+		Cell toCell = this.getCell(to);
+		
+		toCell.setFigure(fromCell.getFigure());
+		fromCell.setFree();		
+	}
+	
 	private void setInitialKings()
 	{
 		King black = new King(Colour.BLACK);
 		King white = new King(Colour.WHITE);
-		field[0][4].setFigure(white);
-		field[7][4].setFigure(black);	
+		field[0][3].setFigure(white);
+		field[7][3].setFigure(black);	
 	}
 	
 	private void setInitialQueens()
 	{
 		Queen black = new Queen(Colour.BLACK);
 		Queen white = new Queen(Colour.WHITE);
-		field[0][3].setFigure(white);
-		field[7][3].setFigure(black);	
+		field[0][4].setFigure(white);
+		field[7][4].setFigure(black);	
 	}
 	
 	private void setInitialBishops()
@@ -107,6 +130,11 @@ public class Desk {
 		return field[pos.getRow()][pos.getColumn()];
 	}
 	
+	public Cell getCell(int row, int column) {
+		Position pos = new Position(row, column);
+		return field[pos.getRow()][pos.getColumn()];
+	}
+	
 //	public Figure [] getFigures(Colour colour){
 //		Figure [] allFigs;
 //		int i, j;
@@ -114,15 +142,54 @@ public class Desk {
 //		return	allFigs;
 //	}
 	
-//	public boolean isShah(Colour colour) {
-//		for (int i=0; i <= FIELD_SIZE-1; i++) {
-//			for (int j=0; j <=  FIELD_SIZE-1; j++) {
-//				Figure fig = field[i][j].getFigure();
-//					if (fig.getColour() == Colour.WHITE)
-//			}
-//			
-//		}
-//		return false;
-//	}
+	public boolean isShahFor(Colour colour) {
+		for (int i=0; i <= FIELD_SIZE-1; i++) {
+			for (int j=0; j <=  FIELD_SIZE-1; j++) {
+				Figure fig = field[i][j].getFigure();
+					if (fig.getColour() == GameController.getInstance().changeCol(colour)) {
+						HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
+						if (fig.isFigureInSet('K', colour, set)) return true;
+					}
+			}	
+		}
+		return false;
+	}
+	
+	public boolean isCheckMateFor(Colour colour) { 			//ћат - нет ни одного способа защитить корол€ от шаха
+		for (int i=0; i <= FIELD_SIZE-1; i++) {
+			for (int j=0; j <=  FIELD_SIZE-1; j++) {
+				Figure fig = field[i][j].getFigure();
+				if (fig.getColour() == colour) { 			// Ѕерем фигуру свого цвета
+					HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
+					Position pos1 = new Position(i, j);
+					for (Position pos2 : set) {
+						fig.makeSystemMove(pos1, pos2); 	// ƒелаем виртуальный ход (возможно срубаем), чтобы проверить, можно ли защитить корол€
+						if (!isShahFor(colour)) { 			// Ўах пропал - значит есть способ защитить корол€. ћата нет.
+							fig.makeSystemMove(pos2, pos1); // ¬озвращаем фигуру, которой "виртуально" ходили, на место
+							if (Figure.getFromBuffer() != null) {
+								field[pos2.getRow()][pos2.getColumn()].setFigure(Figure.getFromBuffer()); // ¬озвращаем на доску возможно срубленную фигуру
+							}
+							return false;
+						}
+					}
+				}
+			}
+		}
+		return true;	
+	}
+	
+	public Desk cloneDesk() throws IOException, ClassNotFoundException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream ous = new ObjectOutputStream(baos);
+        //сохран€ем состо€ние доски в поток и закрываем его(поток)
+        ous.writeObject(this);
+        ous.close();
+        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(bais);
+        Desk cloneDesk = (Desk) ois.readObject();
+        return cloneDesk;
+	}	
+	
+	
 
 }
