@@ -80,7 +80,7 @@ public class GameController {
 		while (true)
 		{
 			if (players[currentPlayer] instanceof User)
-				ConsoleUI.getInstance().representBoard();
+				ConsoleUI.getInstance().representBoard(desk);
 			while (!players[currentPlayer].makeMove())
 			{
 				ConsoleUI.getInstance().showWrongMoveError();

@@ -43,9 +43,8 @@ public class ConsoleUI {
 		else return Colour.BLACK;
 	}
 
-	public void representBoard()
+	public void representBoard(Desk desk)
 	{ 
-		Desk desk = GameController.getInstance().getDesk();
 		char [] line={'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
 		for (int i = 7; i >= 0; i--){
 			System.out.print((i + 1) + " \t");
