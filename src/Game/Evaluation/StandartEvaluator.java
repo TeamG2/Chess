@@ -6,6 +6,7 @@ import java.util.Map;
 import Game.Cell;
 import Game.Desk;
 import Game.GameController;
+import Game.Position;
 import Game.Figure.Figure;
 import Game.Player.Colour;
 
@@ -32,12 +33,48 @@ public class StandartEvaluator extends Evaluator {
 				{
 					Figure figure = cell.getFigure();
 					int currentValue = result.get(figure.getColour());
-					currentValue += getValue(figure);
+					currentValue += getValue(figure, new Position(i, j));
 					result.put(figure.getColour(), currentValue);
 				}
 			}
 		}
 		
 		return result;
+	}
+
+	@Override
+	protected int getPawnValue(Position position, Colour colour) {
+		// TODO Auto-generated method stub
+		return 1;
+	}
+
+	@Override
+	protected int getKnightValue(Position position, Colour colour) {
+		// TODO Auto-generated method stub
+		return 3;
+	}
+
+	@Override
+	protected int getBishopValue(Position position, Colour colour) {
+		// TODO Auto-generated method stub
+		return 3;
+	}
+
+	@Override
+	protected int getRookValue(Position position, Colour colour) {
+		// TODO Auto-generated method stub
+		return 5;
+	}
+
+	@Override
+	protected int getQueenValue(Position position, Colour colour) {
+		// TODO Auto-generated method stub
+		return 9;
+	}
+
+	@Override
+	protected int getKingValue(Position position, Colour colour) {
+		// TODO Auto-generated method stub
+		return 20000;
 	}
 }

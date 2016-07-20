@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 
 
 import Game.Evaluation.StandartEvaluator;
-
+import Game.Evaluation.TableEvaluator;
 import Game.Player.*;
 import UI.ConsoleUI;
 
@@ -63,12 +63,12 @@ public class GameController {
 		if (userColour == Colour.WHITE)
 		{
 			players[0] = new User(Colour.WHITE);
-			players[1] = new MiniMaxBot(Colour.BLACK, new StandartEvaluator());
+			players[1] = new MiniMaxBot(Colour.BLACK, new TableEvaluator());
 		}
 		else
 		{
 			players[1] = new User(Colour.BLACK);
-			players[0] = new MiniMaxBot(Colour.WHITE, new StandartEvaluator());
+			players[0] = new MiniMaxBot(Colour.WHITE, new TableEvaluator());
 		}			
 		
 		currentPlayer = 0;
