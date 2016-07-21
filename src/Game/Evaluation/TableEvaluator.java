@@ -98,7 +98,7 @@ public class TableEvaluator extends Evaluator {
 	
 	@Override
 	protected int getKingValue(Position position, Colour colour) {
-		int figureValue = 20000;
+		int figureValue = 200000;
 		int [][] table = {{-30,-40,-40,-50,-50,-40,-40,-30},
 				{-30,-40,-40,-50,-50,-40,-40,-30},
 				{-30,-40,-40,-50,-50,-40,-40,-30},

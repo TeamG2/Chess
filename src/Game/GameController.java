@@ -64,12 +64,12 @@ public class GameController {
 		if (userColour == Colour.WHITE)
 		{
 			players[0] = new User(Colour.WHITE);
-			players[1] = new MiniMaxBot(Colour.BLACK, new TableEvaluator());
+			players[1] = new AlphaBetaBot(Colour.BLACK, new TableEvaluator());
 		}
 		else
 		{
 			players[1] = new User(Colour.BLACK);
-			players[0] = new MiniMaxBot(Colour.WHITE, new TableEvaluator());
+			players[0] = new AlphaBetaBot(Colour.WHITE, new TableEvaluator());
 		}			
 		
 		currentPlayer = 0;
@@ -94,6 +94,8 @@ public class GameController {
 	public boolean isCheckMateFor(Desk desk, Colour colour) { 			//Мат - нет ни одного способа защитить короля от шаха
 		for (int i=0; i <= desk.FIELD_SIZE-1; i++) {
 			for (int j=0; j <=  desk.FIELD_SIZE-1; j++) {
+				if (desk.getCell(i, j).isFree())
+					continue;
 				Figure fig = desk.getCell(i, j).getFigure();
 				if (fig.getColour() == colour) { 			// Берем фигуру свого цвета
 					HashSet<Position> set = fig.getPossiblePositions(desk, new Position(i, j));
