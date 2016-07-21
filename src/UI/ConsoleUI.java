@@ -43,35 +43,66 @@ public class ConsoleUI {
 		else return Colour.BLACK;
 	}
 
-	public void representBoard()
+	public void representBoard(Desk desk)
 	{ 
-		Desk desk = GameController.getInstance().getDesk();
 		char [] line={'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+		System.out.print("\t");
+		for(int i=0;i<=7;i++){
+			System.out.print("--");
+		}
+		System.out.println("-");
 		for (int i = 7; i >= 0; i--){
 			System.out.print((i + 1) + " \t");
 				
 			for(int j = 0; j <= 7; j++){
 				Position pos = new Position(i, j);
 				Figure fig = desk.getCell(pos).getFigure();
+				System.out.print("|");
 				char c= ' ';
 				if (fig != null)
+				{					
 					c = fig.getName();
+					if (fig.getColour() == Colour.WHITE)
+						c = Character.toUpperCase(c);
+				}
 				if (c == ' ')
 					System.out.print(".");
 				else
 					System.out.print(c);
 				
 			}
-			System.out.println();
+			
+			System.out.println("|");
+			System.out.print("\t");
+			for(int k=0;k<=7;k++){
+				System.out.print("--");
+			}
+			System.out.println("-");
 		}	
 		
 		System.out.println();
 		System.out.print("\t");
 		for(int i=0;i<=7;i++){
-			System.out.print(line[i]);
+			System.out.print(" " + line[i]);
 		}
 		System.out.println();
 	}
+	
+	public void showBotThinkMessage()
+	{
+		System.out.println("Computer is thinking. Please, wait.");
+	}
+	
+	public void showBotMove(Move move)
+	{
+		System.out.print("Computer made move: ");
+		char fromRow = (char) ('1' + move.getFrom().getRow()) ;
+		char fromColumn = (char) ('A' + move.getFrom().getColumn()) ;
+		char toRow = (char) ('1' + move.getTo().getRow()) ;
+		char toColumn = (char) ('A' + move.getTo().getColumn());
+		System.out.print(fromColumn);
+		System.out.println(fromRow + ":" + toColumn + toRow);
+	}	
 	
 	public void showWrongMoveError()
 	{
