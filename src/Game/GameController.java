@@ -44,7 +44,6 @@ public class GameController {
 	public Desk cloneDesk() throws IOException, ClassNotFoundException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream ous = new ObjectOutputStream(baos);
-        //сохраняем состояние доски в поток и закрываем его(поток)
         ous.writeObject(getDesk());
         ous.close();
         ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
@@ -79,8 +78,7 @@ public class GameController {
 	{
 		while (true)
 		{
-			if (players[currentPlayer] instanceof User)
-				ConsoleUI.getInstance().representBoard(desk);
+			ConsoleUI.getInstance().representBoard(desk);
 			while (!players[currentPlayer].makeMove())
 			{
 				ConsoleUI.getInstance().showWrongMoveError();
