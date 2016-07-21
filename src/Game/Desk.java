@@ -34,7 +34,7 @@ public class Desk implements Serializable  {
 		this.setInitialKings();
 	}
 	
-	private void setCells()
+	public void setCells()
 	{
 		for (int i = 0; i < 8; i++)
 		{
