@@ -1,5 +1,6 @@
 package Game.Figure;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashSet;
 
@@ -31,7 +32,32 @@ public abstract class Figure implements Serializable {
 	}
 	
 	public boolean isValidMove(Desk desk, Move move)
-	{		
+	{	
+		//если для для цвета фигуры находящейся в позиции из шах
+		//и если эта фигура не король
+		//вернуть ноль
+		
+		if ( (GameController.getInstance().isShahFor(desk, desk.getCell(move.getFrom()).getFigure().getColour())))
+				
+		{	
+			Desk thisGame = null;
+			try {
+				thisGame = desk.cloneDesk();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			thisGame.moveFigure(move.getFrom(),move.getTo());
+			if (GameController.getInstance().isShahFor(thisGame, thisGame.getCell(move.getTo()).getFigure().getColour())){
+				return false;
+			}
+			
+			
+		}
+		
 		return getPossiblePositions(desk, move.getFrom()).contains(move.getTo());
 	}
 	
