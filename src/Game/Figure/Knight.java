@@ -10,7 +10,7 @@ import Game.Position;
 import Game.Player.Colour;
 
 public class Knight extends Figure {
-	private char nameFigure='N';
+	private char nameFigure='n';
 	 
 	public Knight(Colour colour) {
 		super(colour);

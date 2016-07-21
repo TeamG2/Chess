@@ -45,35 +45,38 @@ public class Desk implements Serializable  {
 		}
 	}
 	
-	public void moveFigure(Cell from, Cell to)
-	{
-		to.setFigure(from.getFigure());
-		from.setFree();		
-	}
-	
 	public void moveFigure(Position from, Position to)
 	{
 		Cell fromCell = this.getCell(from);
 		Cell toCell = this.getCell(to);
 		
 		toCell.setFigure(fromCell.getFigure());
-		fromCell.setFree();		
+		fromCell.setFree();	
+		
+		if (toCell.getFigure() instanceof Pawn)
+		{
+			Pawn pawn = (Pawn)toCell.getFigure();
+			if (pawn.isNeedToPromote(to))
+			{
+				toCell.setFigure(new Queen(pawn.getColour()));
+			}
+		}
 	}
 	
 	private void setInitialKings()
 	{
 		King black = new King(Colour.BLACK);
 		King white = new King(Colour.WHITE);
-		field[0][3].setFigure(white);
-		field[7][3].setFigure(black);	
+		field[0][4].setFigure(white);
+		field[7][4].setFigure(black);	
 	}
 	
 	private void setInitialQueens()
 	{
 		Queen black = new Queen(Colour.BLACK);
 		Queen white = new Queen(Colour.WHITE);
-		field[0][4].setFigure(white);
-		field[7][4].setFigure(black);	
+		field[0][3].setFigure(white);
+		field[7][3].setFigure(black);	
 	}
 	
 	private void setInitialBishops()
@@ -146,7 +149,7 @@ public class Desk implements Serializable  {
 		for (int i=0; i <= FIELD_SIZE-1; i++) {
 			for (int j=0; j <=  FIELD_SIZE-1; j++) {
 				Figure fig = field[i][j].getFigure();
-					if (fig.getColour() == GameController.getInstance().changeCol(colour)) {
+					if ((fig!=null) && (fig.getColour() == GameController.getInstance().changeCol(colour))) {
 						HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
 						if (fig.isFigureInSet('K', colour, set)) return true;
 					}

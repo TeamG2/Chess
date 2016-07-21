@@ -14,7 +14,7 @@ import Game.Position;
 import Game.Player.Colour;
 
 public class King extends Figure{
-	private char nameFigure='K';
+	private char nameFigure='k';
 	public King(Colour colour) {
 		super(colour);
 	}
@@ -23,17 +23,14 @@ public class King extends Figure{
 		return nameFigure;	
 	}
 
-	@Override
-	public boolean isValidMove(Desk desk, Move move) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 
 	@Override
 	public HashSet<Position> getPossiblePositions(Desk desk, Position current) {
 		// TODO Auto-generated method stub
 		HashSet<Position> setOfPosibleMoves= new HashSet <>();
 		int y = current.getRow(), x = current.getColumn();
+		Position newPos;
 		
 		List<Position> set=new ArrayList<>();
 		set.add(new Position(y+1,x-1));
@@ -46,34 +43,37 @@ public class King extends Figure{
 		set.add(new Position(y-1,x+1));
 		
 		for (int i=0; i<set.size();i++){ 
-			Position newPos=set.get(i);
-			Cell newCell = desk.getCell(newPos);
-			/* ƒоступные ходы дл€  орол€, это ходы вокруг него.
-			 * 1) могут быть угловые позиции. Ќужно проверить существует ли эта клетка на поле.
-			 * 2) нужно чтобы не было фигуры своего цвета
-			 * 3) €чейка пуста€ или там находитс€ враг 	
-			 
-			 **/
-			if (newPos.isExist()
-					&&(!(newCell.getFigure().getColour() == getColour()))
-					&&(newCell.isFree() || newCell.getFigure().getColour() != getColour())
-				)
-			{
-						
-				Desk thisGame = null;
-				try {
-					thisGame = GameController.getInstance().getDesk().cloneDesk();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				thisGame.moveFigure(desk.getCell(current), desk.getCell(newPos));
-					if (!thisGame.isShahFor(getColour())){
-						setOfPosibleMoves.add(newPos);
+			newPos=set.get(i);
+			if (newPos.isExist()){
+				Cell newCell = desk.getCell(newPos);
+				/* ƒоступные ходы дл€  орол€, это ходы вокруг него.
+				 * 1) могут быть угловые позиции. Ќужно проверить существует ли эта клетка на поле.
+				 * 2) нужно чтобы не было фигуры своего цвета
+				 * 3) €чейка пуста€ или там находитс€ враг 	
+				 
+				 **/
+				if (	(!newCell.isFree() && !(newCell.getFigure().getColour() == getColour()))
+						|| newCell.isFree()
+						|| (!newCell.isFree() && newCell.getFigure().getColour() != getColour())
+					)
+				{	
+					Desk thisGame = null;
+					try {
+						thisGame = GameController.getInstance().getDesk().cloneDesk();
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
+					
+					thisGame.moveFigure(current, newPos);
+						if (!thisGame.isShahFor(getColour())){
+							setOfPosibleMoves.add(newPos);
+						}
+					
+				}
 			}
 	
 		}	

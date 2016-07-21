@@ -10,6 +10,11 @@ public class Move {
 		to = new Position(rowTo, columnTo);
 	}
 	
+	public Move(Position from, Position to) {
+		this.from = from;
+		this.to= to;
+	}
+
 	public Position getFrom()
 	{
 		return from;
