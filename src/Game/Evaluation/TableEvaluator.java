@@ -13,7 +13,7 @@ public class TableEvaluator extends Evaluator {
 	
 	@Override
 	protected int getPawnValue(Position position, Colour colour) {
-		int figureValue = 1;
+		int figureValue = 100;
 		int [][] table = {{0,  0,  0,  0,  0,  0,  0,  0},
 				{50, 50, 50, 50, 50, 50, 50, 50},
 				{10, 10, 20, 30, 30, 20, 10, 10},
@@ -30,7 +30,7 @@ public class TableEvaluator extends Evaluator {
 	
 	@Override
 	protected int getKnightValue(Position position, Colour colour) {
-		int figureValue = 3;
+		int figureValue = 320;
 		int [][] table = {{-50,-40,-30,-30,-30,-30,-40,-50},
 				{-40,-20,  0,  0,  0,  0,-20,-40},
 				{-30,  0, 10, 15, 15, 10,  0,-30},
@@ -47,7 +47,7 @@ public class TableEvaluator extends Evaluator {
 	
 	@Override
 	protected int getBishopValue(Position position, Colour colour) {
-		int figureValue = 3;
+		int figureValue = 330;
 		int [][] table = {{-20,-10,-10,-10,-10,-10,-10,-20},
 				{-10,  0,  0,  0,  0,  0,  0,-10},
 				{-10,  0,  5, 10, 10,  5,  0,-10},
@@ -64,7 +64,7 @@ public class TableEvaluator extends Evaluator {
 	
 	@Override
 	protected int getRookValue(Position position, Colour colour) {
-		int figureValue = 5;
+		int figureValue = 500;
 		int [][] table = {{0,  0,  0,  0,  0,  0,  0,  0},
 				  {5, 10, 10, 10, 10, 10, 10,  5},
 				  {-5,  0,  0,  0,  0,  0,  0, -5},
@@ -81,7 +81,7 @@ public class TableEvaluator extends Evaluator {
 	
 	@Override
 	protected int getQueenValue(Position position, Colour colour) {
-		int figureValue = 9;
+		int figureValue = 900;
 		int [][] table = {{-20,-10,-10, -5, -5,-10,-10,-20},
 				{-10,  0,  0,  0,  0,  0,  0,-10},
 				{-10,  0,  5,  5,  5,  5,  0,-10},
@@ -98,7 +98,7 @@ public class TableEvaluator extends Evaluator {
 	
 	@Override
 	protected int getKingValue(Position position, Colour colour) {
-		int figureValue = 1000000000;
+		int figureValue = 20000;
 		int [][] table = {{-30,-40,-40,-50,-50,-40,-40,-30},
 				{-30,-40,-40,-50,-50,-40,-40,-30},
 				{-30,-40,-40,-50,-50,-40,-40,-30},
