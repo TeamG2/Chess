@@ -45,7 +45,7 @@ public class ConsoleUI {
 	
 	public void showShahMessage(Colour colour)
 	{
-		System.out.println("Шах для короля цвета " + colour);
+		System.out.println("Shah for " + colour + " player");
 	}
 
 	public void representBoard(Desk desk)
