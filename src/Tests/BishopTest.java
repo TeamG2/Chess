@@ -51,7 +51,7 @@ public class BishopTest {
 	public void testGetFromBuffer() {
 		fail("Not yet implemented");
 	}
-	
+	@Test
 	public void testGetPossibleposition(){
 		Bishop b=new Bishop(Colour.BLACK);
 		hash=new HashSet<>();
