@@ -69,9 +69,9 @@ public class King extends Figure{
 					}
 					
 					thisGame.moveFigure(current, newPos);
-						//if (!thisGame.isShahFor(getColour())){
+						if (!thisGame.isShahFor(getColour())){
 							setOfPosibleMoves.add(newPos);
-						//}
+						}
 					
 				}
 			}

@@ -146,7 +146,7 @@ public class Desk implements Serializable  {
 		for (int i=0; i <= FIELD_SIZE-1; i++) {
 			for (int j=0; j <=  FIELD_SIZE-1; j++) {
 				Figure fig = field[i][j].getFigure();
-					if (fig.getColour() == GameController.getInstance().changeCol(colour)) {
+					if ((fig!=null) && (fig.getColour() == GameController.getInstance().changeCol(colour))) {
 						HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
 						if (fig.isFigureInSet('K', colour, set)) return true;
 					}
