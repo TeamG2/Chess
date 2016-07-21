@@ -37,10 +37,7 @@ public abstract class Figure implements Serializable {
 	
 	public abstract HashSet<Position> getPossiblePositions(Desk desk, Position current);
 	
-	public boolean isFigureInSet(char nameFigure, Colour col, HashSet<Position> hash) {
-		return false;
-	}
-	
+
 	public boolean makeSystemMove(Position pos1, Position pos2) {
 		Desk desk = GameController.getInstance().getDesk();
 		Cell cell1 = desk.getCell(pos1);

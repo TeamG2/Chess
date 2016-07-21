@@ -23,8 +23,6 @@ public class King extends Figure{
 		return nameFigure;	
 	}
 
-
-
 	@Override
 	public HashSet<Position> getPossiblePositions(Desk desk, Position current) {
 		// TODO Auto-generated method stub

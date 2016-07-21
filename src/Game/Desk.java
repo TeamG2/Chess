@@ -151,7 +151,10 @@ public class Desk implements Serializable  {
 				Figure fig = field[i][j].getFigure();
 					if ((fig!=null) && (fig.getColour() == GameController.getInstance().changeCol(colour))) {
 						HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
-						if (fig.isFigureInSet('K', colour, set)) return true;
+						if (isKingInSet(colour, set)) {
+							System.out.println("Шах для короля цвета " + colour);
+							return true;
+						}
 					}
 			}	
 		}
@@ -180,6 +183,15 @@ public class Desk implements Serializable  {
 		}
 		return true;	
 	}
+	
+	public boolean isKingInSet(Colour col, HashSet<Position> set) {
+		Desk d = GameController.getInstance().getDesk();
+		for (Position pos : set) {
+			if (d.getCell(pos).getFigure() instanceof King) return true; 
+		}
+		return false;
+	}
+
 	
 	public Desk cloneDesk() throws IOException, ClassNotFoundException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
