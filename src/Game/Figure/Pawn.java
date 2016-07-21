@@ -14,6 +14,19 @@ public class Pawn extends Figure {
 	public char getName(){
 		return nameFigure;	
 	}
+	
+	public boolean isNeedToPromote(Position position)
+	{
+		if ( getColour() == Colour.WHITE && position.getRow() == 7)
+		{
+			return true;
+		}
+		if ( getColour() == Colour.BLACK && position.getRow() == 0)
+		{
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public HashSet<Position> getPossiblePositions(Desk desk, Position current) {

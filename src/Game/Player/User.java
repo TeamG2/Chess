@@ -30,7 +30,7 @@ public class User extends Player {
 		if (fig.getColour() != this.getColour()) return false;
 		if (!fig.isValidMove(desk, move)) return false;
 		if (!cell2.isFree()) cell2.setFree();
-		desk.moveFigure(cell1, cell2);		
+		desk.moveFigure(pos1, pos2);		
 		
 		return true;		
 	}

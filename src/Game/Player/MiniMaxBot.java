@@ -53,8 +53,6 @@ public class MiniMaxBot extends Player {
 	    				desk.getCell(position).getFigure().getColour() == colour)
 	    		{
 	    			Figure figure = desk.getCell(position).getFigure();
-	    			
-	    			if (figure instanceof King) continue;
 	    			HashSet<Position> possiblePositions = figure.getPossiblePositions(desk, position);	
 	    			for (Position newPosition : possiblePositions) {
 	    				Desk newDesk = null;
@@ -105,8 +103,6 @@ public class MiniMaxBot extends Player {
 	    				desk.getCell(position).getFigure().getColour() == colour)
 	    		{
 	    			Figure figure = desk.getCell(position).getFigure();
-	    			
-	    			if (figure instanceof King) continue;
 	    			HashSet<Position> possiblePositions = figure.getPossiblePositions(desk, position);
 	    			for (Position newPosition : possiblePositions) {
 	    				Desk newDesk = null;

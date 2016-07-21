@@ -45,19 +45,22 @@ public class Desk implements Serializable  {
 		}
 	}
 	
-	public void moveFigure(Cell from, Cell to)
-	{
-		to.setFigure(from.getFigure());
-		from.setFree();		
-	}
-	
 	public void moveFigure(Position from, Position to)
 	{
 		Cell fromCell = this.getCell(from);
 		Cell toCell = this.getCell(to);
 		
 		toCell.setFigure(fromCell.getFigure());
-		fromCell.setFree();		
+		fromCell.setFree();	
+		
+		if (toCell.getFigure() instanceof Pawn)
+		{
+			Pawn pawn = (Pawn)toCell.getFigure();
+			if (pawn.isNeedToPromote(to))
+			{
+				toCell.setFigure(new Queen(pawn.getColour()));
+			}
+		}
 	}
 	
 	private void setInitialKings()
