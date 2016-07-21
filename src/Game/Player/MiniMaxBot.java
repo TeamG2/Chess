@@ -38,9 +38,10 @@ public class MiniMaxBot extends Player {
 	
 	private ScoredMove maxi(ScoredMove alphaF, ScoredMove betaF, Desk desk, int depth, Colour colour) {
 	    if ( depth == 0 )
-	    {
+	    {    	
 	    	Map<Colour, Integer> evaluation = evaluator.getEvaluation(desk);
-	    	return new ScoredMove(new Position(-1, -1), new Position(-1, -1), evaluation.get(colour));
+	    	int value = evaluation.get(colour) - evaluation.get(colour.getOpposite());
+	    	return new ScoredMove(new Position(-1, -1), new Position(-1, -1), value);
 	    }
 	    ScoredMove alpha = new ScoredMove(new Position(alphaF.from.getRow(), alphaF.from.getColumn()),
 	    		 new Position(alphaF.to.getRow(), alphaF.to.getColumn()), alphaF.score);
@@ -67,7 +68,7 @@ public class MiniMaxBot extends Player {
 						}    				
 	    				newDesk.moveFigure(position, newPosition);
 	    				
-	    				ScoredMove score = mini(alpha, beta, newDesk, depth - 1, colour.getOpposite());
+	    				ScoredMove score = mini(alpha, beta, newDesk, depth - 1, colour);
 	    				if (score.score >= beta.score)
 	    				{
 	    					return beta;
@@ -90,7 +91,8 @@ public class MiniMaxBot extends Player {
 	    if ( depth == 0 )
 	    {
 	    	Map<Colour, Integer> evaluation = evaluator.getEvaluation(desk);
-	    	return new ScoredMove(new Position(-1, -1), new Position(-1, -1), -evaluation.get(colour));
+	    	int value = evaluation.get(colour) - evaluation.get(colour.getOpposite());
+	    	return new ScoredMove(new Position(-1, -1), new Position(-1, -1), -value);
 	    }
 	    ScoredMove alpha = new ScoredMove(new Position(alphaF.from.getRow(), alphaF.from.getColumn()),
 	    		 new Position(alphaF.to.getRow(), alphaF.to.getColumn()), alphaF.score);
@@ -118,7 +120,7 @@ public class MiniMaxBot extends Player {
 		    			// todo: copy desk	    				
 	    				newDesk.moveFigure(position, newPosition);
 	    				
-	    				ScoredMove score = maxi(alpha, beta, newDesk, depth - 1, colour.getOpposite());
+	    				ScoredMove score = maxi(alpha, beta, newDesk, depth - 1, colour);
 	    				if (score.score <= alpha.score)
 	    				{
 	    					return alpha;
