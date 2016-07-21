@@ -97,6 +97,10 @@ public class ConsoleUI {
 	{
 		System.out.println("Computer is thinking. Please, wait.");
 	}
+	public void showCheckMateMessage(Colour col)
+	{
+		System.out.println("Checkmate! " + col + " wins!");
+	}
 	
 	public void showBotMove(Move move)
 	{

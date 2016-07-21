@@ -1,5 +1,6 @@
 package Game.Figure;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashSet;
 
@@ -13,7 +14,6 @@ import Game.Player.Colour;
 public abstract class Figure implements Serializable {
 	private Colour colour;
 	private char nameFigure;
-	private static Figure Buffer;
 
 	
 	public Figure(Colour colour)
@@ -31,34 +31,37 @@ public abstract class Figure implements Serializable {
 	}
 	
 	public boolean isValidMove(Desk desk, Move move)
-	{		
+	{	
+		//если для для цвета фигуры находящейся в позиции из шах
+		//и если эта фигура не король
+		//вернуть ноль
+		
+		if ( (GameController.getInstance().isShahFor(desk, desk.getCell(move.getFrom()).getFigure().getColour())))
+				
+		{	
+			Desk thisGame = null;
+			try {
+				thisGame = desk.cloneDesk();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			thisGame.moveFigure(move.getFrom(),move.getTo());
+			if (GameController.getInstance().isShahFor(thisGame, thisGame.getCell(move.getTo()).getFigure().getColour())){
+				return false;
+			}
+			
+			
+		}
+		
 		return getPossiblePositions(desk, move.getFrom()).contains(move.getTo());
 	}
 	
 	public abstract HashSet<Position> getPossiblePositions(Desk desk, Position current);
 	
 
-	public boolean makeSystemMove(Position pos1, Position pos2) {
-		Desk desk = GameController.getInstance().getDesk();
-		Cell cell1 = desk.getCell(pos1);
-		Cell cell2 = desk.getCell(pos2);
-		Move move = new Move(pos1.getRow(), pos1.getColumn(), pos2.getRow(), pos2.getColumn());
-		
-		if (cell1.isFree()) return false;
-		
-		if (!this.isValidMove(desk, move)) return false;
-		
-		if (!cell2.isFree()) {
-			Buffer = cell2.getFigure();
-			cell2.setFree();
-		}
-		cell1.setFree();
-		cell2.setFigure(this);
-		return true;
-	}
-	
-	public static Figure getFromBuffer() {
-		return Buffer;
-	}
 	
  }
