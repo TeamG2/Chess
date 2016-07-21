@@ -149,9 +149,9 @@ public class Desk implements Serializable  {
 		for (int i=0; i <= FIELD_SIZE-1; i++) {
 			for (int j=0; j <=  FIELD_SIZE-1; j++) {
 				Figure fig = field[i][j].getFigure();
-					if ((fig!=null) && (fig.getColour() == GameController.getInstance().changeCol(colour))) {
+					if ((fig!=null) && (fig.getColour() == colour.getOpposite())) {
 						HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
-						if (isKingInSet(colour, set)) {							
+						if (isKingInSet(this, colour, set)) {							
 							return true;
 						}
 					}
@@ -183,8 +183,7 @@ public class Desk implements Serializable  {
 		return true;	
 	}
 	
-	public boolean isKingInSet(Colour col, HashSet<Position> set) {
-		Desk d = GameController.getInstance().getDesk();
+	public boolean isKingInSet(Desk d, Colour col, HashSet<Position> set) {
 		for (Position pos : set) {
 			if (d.getCell(pos).getFigure() instanceof King) return true; 
 		}
