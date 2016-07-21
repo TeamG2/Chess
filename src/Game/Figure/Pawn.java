@@ -42,7 +42,7 @@ public class Pawn extends Figure {
 				setOfPosibleMoves.add(new Position(row + 1, column));
 			}
 
-			if (row == 1 && desk.getCell(new Position(3, column)).isFree())
+			if (row == 1 && desk.getCell(new Position(3, column)).isFree()&& desk.getCell(new Position(2, column)).isFree())
 			{
 				setOfPosibleMoves.add(new Position(3, column));
 			}
@@ -72,7 +72,7 @@ public class Pawn extends Figure {
 				setOfPosibleMoves.add(new Position(row - 1, column));
 			}
 
-			if (row == 6 && desk.getCell(new Position(4, column)).isFree())
+			if (row == 6 && desk.getCell(new Position(4, column)).isFree()&& desk.getCell(new Position(5, column)).isFree())
 			{
 				setOfPosibleMoves.add(new Position(4, column));
 			}
