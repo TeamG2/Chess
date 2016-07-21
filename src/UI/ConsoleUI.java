@@ -46,28 +46,44 @@ public class ConsoleUI {
 	public void representBoard(Desk desk)
 	{ 
 		char [] line={'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
+		System.out.print("\t");
+		for(int i=0;i<=7;i++){
+			System.out.print("--");
+		}
+		System.out.println("-");
 		for (int i = 7; i >= 0; i--){
 			System.out.print((i + 1) + " \t");
 				
 			for(int j = 0; j <= 7; j++){
 				Position pos = new Position(i, j);
 				Figure fig = desk.getCell(pos).getFigure();
+				System.out.print("|");
 				char c= ' ';
 				if (fig != null)
+				{					
 					c = fig.getName();
+					if (fig.getColour() == Colour.WHITE)
+						c = Character.toUpperCase(c);
+				}
 				if (c == ' ')
 					System.out.print(".");
 				else
 					System.out.print(c);
 				
 			}
-			System.out.println();
+			
+			System.out.println("|");
+			System.out.print("\t");
+			for(int k=0;k<=7;k++){
+				System.out.print("--");
+			}
+			System.out.println("-");
 		}	
 		
 		System.out.println();
 		System.out.print("\t");
 		for(int i=0;i<=7;i++){
-			System.out.print(line[i]);
+			System.out.print(" " + line[i]);
 		}
 		System.out.println();
 	}

@@ -11,7 +11,7 @@ import Game.Player.Colour;
 
 public class Bishop extends Figure {
 
-	private char nameFigure='B';
+	private char nameFigure='b';
 	public Bishop(Colour colour) {
 		super(colour);
 	}

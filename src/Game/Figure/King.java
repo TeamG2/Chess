@@ -14,7 +14,7 @@ import Game.Position;
 import Game.Player.Colour;
 
 public class King extends Figure{
-	private char nameFigure='K';
+	private char nameFigure='k';
 	public King(Colour colour) {
 		super(colour);
 	}
