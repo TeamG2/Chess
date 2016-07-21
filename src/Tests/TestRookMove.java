@@ -1,13 +1,11 @@
 package Tests;
 import org.junit.Test;
-
 import Game.*;
 import Game.Figure.*;
 import Game.Player.Colour;
 import junit.framework.TestCase;
 
 public class TestRookMove extends TestCase {
-	@Test
 	public void testFailure() {
 		int initX = 3, initY = 3, j;
 		Desk testDesk = new Desk();
@@ -36,6 +34,8 @@ public class TestRookMove extends TestCase {
 			}
 		}
 		
+		myMove = new Move(initPos, new Position(0, initX+1));
+		assertFalse(rookW1.isValidMove(testDesk, myMove));
 		
 		testDesk.getCell(0, initX).setFigure(rookW2);
 		myMove = new Move(initPos, new Position(0, initX));
