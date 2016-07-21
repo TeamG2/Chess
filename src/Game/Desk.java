@@ -151,8 +151,10 @@ public class Desk implements Serializable  {
 				Figure fig = field[i][j].getFigure();
 					if ((fig!=null) && (fig.getColour() == GameController.getInstance().changeCol(colour))) {
 						HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
-						if (isKingInSet(colour, set)) return true;
-						System.out.println("Шах для короля цвета " + colour);
+						if (isKingInSet(colour, set)) {
+							System.out.println("Шах для короля цвета " + colour);
+							return true;
+						}
 					}
 			}	
 		}
