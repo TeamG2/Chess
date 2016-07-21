@@ -114,7 +114,7 @@ public class GameController {
 		return true;	
 	}
 	
-	private boolean isKingInSet(Desk d, Colour col, HashSet<Position> set) {
+	public boolean isKingInSet(Desk d, Colour col, HashSet<Position> set) {
 		for (Position pos : set) {
 			if (d.getCell(pos).getFigure() instanceof King) return true; 
 		}

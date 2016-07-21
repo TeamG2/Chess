@@ -6,10 +6,12 @@ import org.junit.Test;
 
 import Game.Cell;
 import Game.Desk;
+import Game.GameController;
 import Game.Position;
 import Game.Figure.Figure;
 import Game.Figure.King;
 import Game.Figure.Pawn;
+import Game.Figure.Queen;
 import Game.Player.Colour;
 
 public class ShahTest {
@@ -29,10 +31,7 @@ public class ShahTest {
 		fig = new King(Colour.BLACK);
 		cell.setFigure(fig);
 		
-		position = new Position(3, 4);
-		cell = desk.getCell(position);
-		fig = new King(Colour.BLACK);
-		cell.setFigure(fig);
+		assertTrue(GameController.getInstance().isShahFor(desk, Colour.WHITE));
 	}
 
 }
