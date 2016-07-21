@@ -14,7 +14,6 @@ import Game.Player.Colour;
 public abstract class Figure implements Serializable {
 	private Colour colour;
 	private char nameFigure;
-	private static Figure Buffer;
 
 	
 	public Figure(Colour colour)
@@ -64,27 +63,5 @@ public abstract class Figure implements Serializable {
 	public abstract HashSet<Position> getPossiblePositions(Desk desk, Position current);
 	
 
-	public boolean makeSystemMove(Position pos1, Position pos2) {
-		Desk desk = GameController.getInstance().getDesk();
-		Cell cell1 = desk.getCell(pos1);
-		Cell cell2 = desk.getCell(pos2);
-		Move move = new Move(pos1.getRow(), pos1.getColumn(), pos2.getRow(), pos2.getColumn());
-		
-		if (cell1.isFree()) return false;
-		
-		if (!this.isValidMove(desk, move)) return false;
-		
-		if (!cell2.isFree()) {
-			Buffer = cell2.getFigure();
-			cell2.setFree();
-		}
-		cell1.setFree();
-		cell2.setFigure(this);
-		return true;
-	}
-	
-	public static Figure getFromBuffer() {
-		return Buffer;
-	}
 	
  }

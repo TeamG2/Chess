@@ -91,20 +91,30 @@ public class GameController {
 		return false;
 	}
 	
-	public boolean isCheckMateFor(Desk desk, Colour colour) { 			//Мат - нет ни одного способа защитить короля от шаха
+	public boolean isCheckMateFor(Desk desk, Colour colour) {
+		//Мат - нет ни одного способа защитить короля от шаха
+		
+		Desk thisGame = null;
+	
+		
 		for (int i=0; i <= desk.FIELD_SIZE-1; i++) {
 			for (int j=0; j <=  desk.FIELD_SIZE-1; j++) {
 				Figure fig = desk.getCell(i, j).getFigure();
-				if (fig.getColour() == colour) { 			// Берем фигуру свого цвета
+				if ((fig!=null) && fig.getColour() == colour) { 			// Берем фигуру свого цвета
 					HashSet<Position> set = fig.getPossiblePositions(desk, new Position(i, j));
 					Position pos1 = new Position(i, j);
 					for (Position pos2 : set) {
-						fig.makeSystemMove(pos1, pos2); 	// Делаем виртуальный ход (возможно срубаем), чтобы проверить, можно ли защитить короля
-						if (!GameController.getInstance().isShahFor(desk, colour)) { 			// Шах пропал - значит есть способ защитить короля. Мата нет.
-							fig.makeSystemMove(pos2, pos1); // Возвращаем фигуру, которой "виртуально" ходили, на место
-							if (Figure.getFromBuffer() != null) {
-								desk.getCell(pos2.getRow(), pos2.getColumn()).setFigure(Figure.getFromBuffer()); // Возвращаем на доску возможно срубленную фигуру
-							}
+						try {
+							thisGame = desk.cloneDesk();
+						} catch (ClassNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						thisGame.moveFigure(pos1, pos2);// Делаем виртуальный ход (возможно срубаем), чтобы проверить, можно ли защитить короля
+						if (!GameController.getInstance().isShahFor(thisGame, colour)) { 			// Шах пропал - значит есть способ защитить короля. Мата нет.
 							return false;
 						}
 					}
@@ -123,19 +133,26 @@ public class GameController {
 	
 	public void gameRunner()
 	{
-		while (true)
+		while (!isCheckMateFor(desk, players[currentPlayer].getColour()))
 		{
-			if (isShahFor(desk, players[currentPlayer].getColour()))
-			{
-				ConsoleUI.getInstance().showShahMessage(players[currentPlayer].getColour());
-			}
-			ConsoleUI.getInstance().representBoard(desk);
-			while (!players[currentPlayer].makeMove())
-			{
-				ConsoleUI.getInstance().showWrongMoveError();
-			}
-			currentPlayer = currentPlayer ^ 1; // change player
+			
+				if (isShahFor(desk, players[currentPlayer].getColour()))
+				{
+					ConsoleUI.getInstance().showShahMessage(players[currentPlayer].getColour());
+				}	
+				ConsoleUI.getInstance().representBoard(desk);
+				
+				while (!players[currentPlayer].makeMove())
+				{
+					ConsoleUI.getInstance().showWrongMoveError();
+				}
+				currentPlayer = currentPlayer ^ 1; // change player
+				
+				
 		}
+		ConsoleUI.getInstance().representBoard(desk);
+		ConsoleUI.getInstance().showCheckMateMessage(changeCol(players[currentPlayer].getColour()));
+		
 	}
 	
 	public Colour changeCol(Colour col) {
