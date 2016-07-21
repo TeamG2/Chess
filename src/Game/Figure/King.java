@@ -22,6 +22,8 @@ public class King extends Figure{
 	public char getName(){
 		return nameFigure;	
 	}
+	
+	
 
 	@Override
 	public HashSet<Position> getPossiblePositions(Desk desk, Position current) {
@@ -67,7 +69,7 @@ public class King extends Figure{
 					}
 					
 					thisGame.moveFigure(current, newPos);
-						if (!thisGame.isShahFor(getColour())){
+						if (!GameController.getInstance().isShahFor(thisGame, getColour())){
 							setOfPosibleMoves.add(newPos);
 						}
 					

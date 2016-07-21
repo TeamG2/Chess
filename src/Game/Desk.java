@@ -145,50 +145,9 @@ public class Desk implements Serializable  {
 //		return	allFigs;
 //	}
 	
-	public boolean isShahFor(Colour colour) {
-		for (int i=0; i <= FIELD_SIZE-1; i++) {
-			for (int j=0; j <=  FIELD_SIZE-1; j++) {
-				Figure fig = field[i][j].getFigure();
-					if ((fig!=null) && (fig.getColour() == colour.getOpposite())) {
-						HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
-						if (isKingInSet(this, colour, set)) {							
-							return true;
-						}
-					}
-			}	
-		}
-		return false;
-	}
 	
-	public boolean isCheckMateFor(Colour colour) { 			//Мат - нет ни одного способа защитить короля от шаха
-		for (int i=0; i <= FIELD_SIZE-1; i++) {
-			for (int j=0; j <=  FIELD_SIZE-1; j++) {
-				Figure fig = field[i][j].getFigure();
-				if (fig.getColour() == colour) { 			// Берем фигуру свого цвета
-					HashSet<Position> set = fig.getPossiblePositions(this, new Position(i, j));
-					Position pos1 = new Position(i, j);
-					for (Position pos2 : set) {
-						fig.makeSystemMove(pos1, pos2); 	// Делаем виртуальный ход (возможно срубаем), чтобы проверить, можно ли защитить короля
-						if (!isShahFor(colour)) { 			// Шах пропал - значит есть способ защитить короля. Мата нет.
-							fig.makeSystemMove(pos2, pos1); // Возвращаем фигуру, которой "виртуально" ходили, на место
-							if (Figure.getFromBuffer() != null) {
-								field[pos2.getRow()][pos2.getColumn()].setFigure(Figure.getFromBuffer()); // Возвращаем на доску возможно срубленную фигуру
-							}
-							return false;
-						}
-					}
-				}
-			}
-		}
-		return true;	
-	}
 	
-	public boolean isKingInSet(Desk d, Colour col, HashSet<Position> set) {
-		for (Position pos : set) {
-			if (d.getCell(pos).getFigure() instanceof King) return true; 
-		}
-		return false;
-	}
+
 
 	
 	public Desk cloneDesk() throws IOException, ClassNotFoundException {
