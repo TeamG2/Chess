@@ -6,10 +6,12 @@ import java.util.Map;
 
 import Game.Desk;
 import Game.GameController;
+import Game.Move;
 import Game.Position;
 import Game.Evaluation.Evaluator;
 import Game.Figure.Figure;
 import Game.Figure.King;
+import UI.ConsoleUI;
 
 public class MiniMaxBot extends Player {
 	
@@ -23,14 +25,14 @@ public class MiniMaxBot extends Player {
 
 	@Override
 	public boolean makeMove() {
-
+		ConsoleUI.getInstance().showBotThinkMessage();
 		Desk desk = GameController.getInstance().getDesk();
 		ScoredMove alpha = new ScoredMove(new Position(-1, -1), new Position(-1, -1), Integer.MIN_VALUE);
 		ScoredMove beta = new ScoredMove(new Position(-1, -1), new Position(-1, -1), Integer.MAX_VALUE);
-		ScoredMove optimal = maxi(alpha, beta, desk, 3, this.getColour());
+		ScoredMove optimal = maxi(alpha, beta, desk, 4, this.getColour());
 		
 		desk.moveFigure(optimal.from, optimal.to);
-		
+		ConsoleUI.getInstance().showBotMove(new Move(optimal.from, optimal.to));
 		return true;
 	}
 	

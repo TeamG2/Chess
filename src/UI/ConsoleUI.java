@@ -88,6 +88,22 @@ public class ConsoleUI {
 		System.out.println();
 	}
 	
+	public void showBotThinkMessage()
+	{
+		System.out.println("Computer is thinking. Please, wait.");
+	}
+	
+	public void showBotMove(Move move)
+	{
+		System.out.print("Computer made move: ");
+		char fromRow = (char) ('1' + move.getFrom().getRow()) ;
+		char fromColumn = (char) ('A' + move.getFrom().getColumn()) ;
+		char toRow = (char) ('1' + move.getTo().getRow()) ;
+		char toColumn = (char) ('A' + move.getTo().getColumn());
+		System.out.print(fromColumn);
+		System.out.println(fromRow + ":" + toColumn + toRow);
+	}	
+	
 	public void showWrongMoveError()
 	{
 		System.out.println("You can't make this move. Please, try again");
