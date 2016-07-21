@@ -78,6 +78,10 @@ public class GameController {
 	{
 		while (true)
 		{
+			if (desk.isShahFor(players[currentPlayer].getColour()))
+			{
+				ConsoleUI.getInstance().showShahMessage(players[currentPlayer].getColour());
+			}
 			ConsoleUI.getInstance().representBoard(desk);
 			while (!players[currentPlayer].makeMove())
 			{

@@ -42,6 +42,11 @@ public class ConsoleUI {
 		if (s.equals("W")) return Colour.WHITE;
 		else return Colour.BLACK;
 	}
+	
+	public void showShahMessage(Colour colour)
+	{
+		System.out.println("Шах для короля цвета " + colour);
+	}
 
 	public void representBoard(Desk desk)
 	{ 
