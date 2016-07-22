@@ -41,6 +41,9 @@ public class King extends Figure{
 		set.add(new Position(y-1,x-1));
 		set.add(new Position(y-1,x));
 		set.add(new Position(y-1,x+1));
+//		if(current.getColumn()==4 && current.getRow()==0){
+//			set.add(new Position(y,x+2));
+//		}
 		
 		for (int i=0; i<set.size();i++){ 
 			newPos=set.get(i);

@@ -31,10 +31,22 @@ public class GameController {
 		desk = new Desk();
 	}
 	
+	private GameController(Desk deskReceived)
+	{
+		desk = deskReceived;
+	}
+	
 	public static GameController getInstance()
 	{
 		if (instance == null)
 			instance = new GameController();
+		return instance;
+	}
+	
+	public static GameController getInstance(Desk deskReceived)
+	{
+		if (instance == null)
+			instance = new GameController(deskReceived);
 		return instance;
 	}
 	
@@ -61,6 +73,28 @@ public class GameController {
 		players = new Player[2];
 		
 		Colour userColour = ConsoleUI.getInstance().userColour();
+		if (userColour == Colour.WHITE)
+		{
+			players[0] = new User(Colour.WHITE);
+			players[1] = new AlphaBetaBot(Colour.BLACK, new TableEvaluator());
+		}
+		else
+		{
+			players[1] = new User(Colour.BLACK);
+			players[0] = new AlphaBetaBot(Colour.WHITE, new TableEvaluator());
+		}			
+		
+		currentPlayer = 0;
+		gameRunner();
+	}
+	
+	public void startNewGame(Desk desk, Colour userColour)
+	{
+//		desk = new Desk();
+//		desk.setInitialState();
+		players = new Player[2];
+		
+//		Colour userColour = ConsoleUI.getInstance().userColour();
 		if (userColour == Colour.WHITE)
 		{
 			players[0] = new User(Colour.WHITE);
